@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0n6yfvxbdwvv"]
+
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://player_body_2d.tscn" id="1_gojnm"]
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://beat_emitter.gd" id="2_1c2mv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c2mv"]
+size = Vector2(128, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
+size = Vector2(96, 32)
+
+[sub_resource type="Environment" id="Environment_gojnm"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = -500
+limit_top = -500
+limit_right = 1500
+limit_bottom = 500
+
+[node name="PlayerBody2D" parent="." instance=ExtResource("1_gojnm")]
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="StaticBlock" type="StaticBody2D" parent="Enviroment"]
+position = Vector2(0, 45)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/StaticBlock"]
+shape = SubResource("RectangleShape2D_1c2mv")
+
+[node name="ColorRect" type="ColorRect" parent="Enviroment/StaticBlock"]
+offset_left = -64.0
+offset_top = -16.0
+offset_right = 64.0
+offset_bottom = 16.0
+color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+
+[node name="SwitchBlockPink" type="StaticBody2D" parent="Enviroment"]
+position = Vector2(194, 46)
+
+[node name="ColorRect2" type="ColorRect" parent="Enviroment/SwitchBlockPink"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 16.0
+color = Color(0.875, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/SwitchBlockPink"]
+shape = SubResource("RectangleShape2D_gojnm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gojnm")
+
+[node name="BeatEmitter" type="Node" parent="."]
+script = ExtResource("2_1c2mv")
+
+[node name="Timer" type="Timer" parent="BeatEmitter"]
+wait_time = 0.7
+
+[connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
