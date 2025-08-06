@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqvn07c45vqbj"]
+
+[ext_resource type="PackedScene" uid="uid://bw6ddn1vqqjmy" path="res://Scenes/switch_block_base.tscn" id="1_lixv2"]
+
+[node name="SwitchBlockBlue" instance=ExtResource("1_lixv2")]
+active = true
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0, 0.505882, 1, 1)

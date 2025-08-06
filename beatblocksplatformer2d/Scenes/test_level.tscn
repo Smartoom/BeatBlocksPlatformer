@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://b0n6yfvxbdwvv"]
+
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="1_gojnm"]
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="2_1c2mv"]
+[ext_resource type="AudioStream" uid="uid://bqcjohmmdbm5e" path="res://sfx/bvom.wav" id="2_sb12i"]
+[ext_resource type="PackedScene" uid="uid://bqvn07c45vqbj" path="res://Scenes/switch_block_blue.tscn" id="3_4ptq8"]
+[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="4_lnbra"]
+[ext_resource type="PackedScene" uid="uid://b0bwyu5xge2vl" path="res://Scenes/switch_block_pink.tscn" id="4_sb12i"]
+[ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="7_3ihge"]
+[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_6emce"]
+[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="8_lnbra"]
+
+[sub_resource type="Environment" id="Environment_gojnm"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
+size = Vector2(2569, 575)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="BeatEmitter" type="Node" parent="."]
+script = ExtResource("2_1c2mv")
+
+[node name="Timer" type="Timer" parent="BeatEmitter"]
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BeatEmitter"]
+stream = ExtResource("2_sb12i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gojnm")
+
+[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("1_gojnm")]
+
+[node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
+zoom = Vector2(2, 2)
+limit_left = -500
+limit_top = -500
+limit_right = 1500
+limit_bottom = 500
+editor_draw_limits = true
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="StaticBlock" parent="Enviroment" instance=ExtResource("4_lnbra")]
+position = Vector2(0, 45)
+
+[node name="StaticBlock2" parent="Enviroment" instance=ExtResource("4_lnbra")]
+position = Vector2(675, -1)
+
+[node name="SwitchBlockBlue" parent="Enviroment" instance=ExtResource("3_4ptq8")]
+position = Vector2(143, 42)
+
+[node name="SwitchBlockBlue2" parent="Enviroment" instance=ExtResource("3_4ptq8")]
+position = Vector2(397, 30)
+
+[node name="SwitchBlockPink" parent="Enviroment" instance=ExtResource("4_sb12i")]
+position = Vector2(277, 42)
+
+[node name="SwitchBlockPink2" parent="Enviroment" instance=ExtResource("4_sb12i")]
+position = Vector2(523, -1)
+
+[node name="StaticBlockShort" parent="Enviroment" instance=ExtResource("7_3ihge")]
+position = Vector2(288, -247)
+
+[node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
+script = ExtResource("8_lnbra")
+checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2")]
+
+[node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartHandler/RestartPromptArea"]
+position = Vector2(211.5, 665.5)
+shape = SubResource("RectangleShape2D_sb12i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RestartHandler"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RestartHandler/CanvasLayer"]
+visible = false
+z_index = 50
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to go back to a checkpoint"
+
+[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_6emce")]
+
+[node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_6emce")]
+position = Vector2(673, -48)
+
+[connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
+[connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]

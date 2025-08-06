@@ -1,0 +1,22 @@
+extends Node
+
+@export var checkpoints:Array[Node2D]
+var last_checkpoint :int = 0
+@onready var restart_prompt := $CanvasLayer/RichTextLabel
+#var should_prompt_restart = false
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Restart"):
+		var player_node = get_tree().get_first_node_in_group("Player")
+		player_node.position = checkpoints.get(last_checkpoint).global_position
+		restart_prompt.visible = false
+
+
+func _on_restart_prompt_area_body_entered(body : Node2D) -> void:
+	restart_prompt.visible = true
+
+func set_new_check_point (new_check_point : Node2D):
+	last_checkpoint = checkpoints.find(new_check_point)
+
+func set_new_check_point_int (new_check_point:int):
+	last_checkpoint = new_check_point
