@@ -13,6 +13,9 @@ func _process(delta: float) -> void:
 
 
 func _on_restart_prompt_area_body_entered(body : Node2D) -> void:
+	if not body.is_in_group("Player"):
+		return
+	
 	restart_prompt.visible = true
 
 func set_new_check_point (new_check_point : Node2D):

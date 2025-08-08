@@ -9,8 +9,19 @@ var bop_or_bap :bool = false
 
 func _on_timer_timeout() -> void:
 	beat.emit()
+	
+	if not sound_enabled:
+		return
+	
 	if bop_or_bap:
 		bopPlayer.play()
 	else:
 		bapPlayer.play()
 	bop_or_bap = not bop_or_bap
+
+var sound_enabled = false
+
+func enable_sound():
+	sound_enabled = true
+func disable_sound():
+	sound_enabled = false

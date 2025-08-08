@@ -1,0 +1,460 @@
+[gd_scene load_steps=26 format=3 uid="uid://chcjv2rn2n48v"]
+
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_nqasx"]
+[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_ryjqc"]
+[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_xe7un"]
+[ext_resource type="Script" uid="uid://bav1ecjcyn6rs" path="res://Scripts/audio_stop_area.gd" id="4_v3vqe"]
+[ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_bvs0b"]
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_syfhk"]
+[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_u45xj"]
+[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_ay16s"]
+[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_6748a"]
+[ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="10_5y6uu"]
+[ext_resource type="PackedScene" uid="uid://b0bwyu5xge2vl" path="res://Scenes/switch_block_pink.tscn" id="11_m4h5f"]
+[ext_resource type="PackedScene" uid="uid://bqvn07c45vqbj" path="res://Scenes/switch_block_blue.tscn" id="12_d2e0u"]
+[ext_resource type="Script" uid="uid://bocrb3vwlkomg" path="res://Scripts/trophy_set.gd" id="13_f8if4"]
+[ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_60msr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
+size = Vector2(86, 272)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akkqd"]
+size = Vector2(138, 499)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8v7by"]
+size = Vector2(207, 31)
+
+[sub_resource type="Environment" id="Environment_gojnm"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
+size = Vector2(192, 41)
+
+[sub_resource type="Animation" id="Animation_1rqgg"]
+resource_name = "FallDown"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trophy:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0666667, 1.5),
+"transitions": PackedFloat32Array(2.2974, 0.0441943),
+"update": 0,
+"values": [0.0, -1.57079]
+}
+
+[sub_resource type="Animation" id="Animation_mwmob"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trophy:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lqheo"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwmob"]
+_data = {
+&"FallDown": SubResource("Animation_1rqgg"),
+&"RESET": SubResource("Animation_mwmob"),
+&"idle": SubResource("Animation_lqheo")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwmob"]
+size = Vector2(102, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufl4"]
+size = Vector2(40, 45)
+
+[node name="Level1" type="Node2D"]
+
+[node name="BeatEmitter" type="Node" parent="."]
+script = ExtResource("1_nqasx")
+
+[node name="Timer" type="Timer" parent="BeatEmitter"]
+autostart = true
+
+[node name="BopAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
+stream = ExtResource("2_ryjqc")
+
+[node name="BapAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
+stream = ExtResource("3_xe7un")
+
+[node name="AudioStopArea" type="Area2D" parent="BeatEmitter"]
+position = Vector2(2406, -297)
+script = ExtResource("4_v3vqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStopArea"]
+position = Vector2(48, -81)
+shape = SubResource("RectangleShape2D_1rqgg")
+
+[node name="AudioStartArea" type="Area2D" parent="BeatEmitter"]
+script = ExtResource("5_bvs0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea"]
+position = Vector2(674, -81)
+shape = SubResource("RectangleShape2D_akkqd")
+
+[node name="AudioStartArea2" type="Area2D" parent="BeatEmitter"]
+position = Vector2(1941, -156)
+script = ExtResource("5_bvs0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea2"]
+position = Vector2(678.5, -63.5)
+shape = SubResource("RectangleShape2D_8v7by")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gojnm")
+
+[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_syfhk")]
+position = Vector2(-208, 119)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
+zoom = Vector2(2, 2)
+limit_left = -350
+limit_top = -500
+limit_right = 2775
+limit_bottom = 500
+editor_draw_limits = true
+
+[node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
+script = ExtResource("7_u45xj")
+checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2")]
+
+[node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartHandler/RestartPromptArea"]
+position = Vector2(216, 146.5)
+shape = SubResource("RectangleShape2D_sb12i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RestartHandler"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RestartHandler/CanvasLayer"]
+visible = false
+z_index = 50
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to go back to a checkpoint"
+
+[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_ay16s")]
+position = Vector2(-200, 125)
+
+[node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_ay16s")]
+position = Vector2(573, 132)
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="Bounds" type="Node" parent="Enviroment"]
+
+[node name="StaticBlock" parent="Enviroment/Bounds" instance=ExtResource("9_6748a")]
+position = Vector2(1233, 191)
+scale = Vector2(24.56, 1)
+
+[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("9_6748a")]
+position = Vector2(-331, -60)
+rotation = 1.57079
+scale = Vector2(4.05929, 0.960454)
+
+[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("9_6748a")]
+position = Vector2(2753, -74)
+rotation = -1.57079
+scale = Vector2(3.96, 1)
+
+[node name="StaticBlock6" parent="Enviroment" instance=ExtResource("9_6748a")]
+position = Vector2(-156, -62)
+rotation = -0.261799
+scale = Vector2(3.07773, 0.935815)
+
+[node name="StaticBlock7" parent="Enviroment" instance=ExtResource("9_6748a")]
+position = Vector2(64, -225)
+rotation = -1.309
+scale = Vector2(2.02141, 0.935815)
+
+[node name="StaticBlock8" parent="Enviroment" instance=ExtResource("9_6748a")]
+position = Vector2(729, -349)
+scale = Vector2(10.3577, 0.935815)
+
+[node name="Sect1" type="Node" parent="Enviroment"]
+
+[node name="StaticBlockShort" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(191, 100)
+
+[node name="StaticBlockShort9" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(400, -193)
+
+[node name="StaticBlockShort4" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(270, 34)
+
+[node name="StaticBlockShort5" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(346, -30)
+
+[node name="StaticBlockShort6" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(247, -90)
+
+[node name="StaticBlockShort7" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(136, -153)
+
+[node name="StaticBlockShort8" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(267, -209)
+
+[node name="StaticBlockShort2" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(-77, 142)
+
+[node name="StaticBlockShort3" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
+position = Vector2(16, 84)
+
+[node name="StaticBlock4" parent="Enviroment/Sect1" instance=ExtResource("9_6748a")]
+position = Vector2(95, 94)
+rotation = -1.57079
+
+[node name="StaticBlock5" parent="Enviroment/Sect1" instance=ExtResource("9_6748a")]
+position = Vector2(411, -17)
+rotation = -1.57079
+scale = Vector2(3, 1)
+
+[node name="Sect2" type="Node" parent="Enviroment"]
+
+[node name="StaticBlockShort9" parent="Enviroment/Sect2" instance=ExtResource("10_5y6uu")]
+position = Vector2(705, 142)
+
+[node name="StaticBlockShort11" parent="Enviroment/Sect2" instance=ExtResource("10_5y6uu")]
+position = Vector2(1437, 142)
+
+[node name="StaticBlockShort10" parent="Enviroment/Sect2" instance=ExtResource("10_5y6uu")]
+position = Vector2(821, 142)
+
+[node name="StaticBlock" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
+position = Vector2(764, 126)
+rotation = -1.57079
+
+[node name="StaticBlock2" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
+position = Vector2(996, 8)
+
+[node name="StaticBlock3" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
+position = Vector2(1044, 100)
+rotation = -1.57079
+scale = Vector2(1.28, 1)
+
+[node name="StaticBlock4" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
+position = Vector2(1396, 126)
+rotation = -1.57079
+scale = Vector2(0.8, 1)
+
+[node name="StaticBlock5" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
+position = Vector2(1593, 79)
+rotation = -1.57079
+scale = Vector2(1.64, 1)
+
+[node name="SwitchBlockPink" parent="Enviroment/Sect2" instance=ExtResource("11_m4h5f")]
+position = Vector2(862, 20)
+
+[node name="SwitchBlockPink2" parent="Enviroment/Sect2" instance=ExtResource("11_m4h5f")]
+position = Vector2(1281, 116)
+
+[node name="SwitchBlockPink3" parent="Enviroment/Sect2" instance=ExtResource("11_m4h5f")]
+position = Vector2(1514, 50)
+
+[node name="Sect3" type="Node" parent="Enviroment"]
+
+[node name="StaticBlockShort14" parent="Enviroment/Sect3" instance=ExtResource("10_5y6uu")]
+position = Vector2(2227, -5)
+
+[node name="SwitchBlockBlue" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
+position = Vector2(1801, 158)
+
+[node name="SwitchBlockBlue2" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
+position = Vector2(2105, 50)
+
+[node name="SwitchBlockPink" parent="Enviroment/Sect3" instance=ExtResource("11_m4h5f")]
+position = Vector2(1947, 100)
+
+[node name="SwitchBlockBlue3" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
+position = Vector2(2343, 66)
+
+[node name="SwitchBlockBlue4" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
+position = Vector2(2623, -46)
+
+[node name="SwitchBlockPink2" parent="Enviroment/Sect3" instance=ExtResource("11_m4h5f")]
+position = Vector2(2477, 132)
+
+[node name="SwitchBlockPink3" parent="Enviroment/Sect3" instance=ExtResource("11_m4h5f")]
+position = Vector2(2477, 0)
+
+[node name="StaticBlock6" parent="Enviroment/Sect3" instance=ExtResource("9_6748a")]
+position = Vector2(2252, 84)
+rotation = -1.57079
+scale = Vector2(1.64, 1)
+
+[node name="StaticBlockShort12" parent="Enviroment/Sect3" instance=ExtResource("10_5y6uu")]
+position = Vector2(2714, -106)
+
+[node name="StaticBlockShort13" parent="Enviroment/Sect3" instance=ExtResource("10_5y6uu")]
+position = Vector2(2566, -153)
+
+[node name="Win Room" type="Node" parent="Enviroment"]
+
+[node name="StaticBlock7" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
+position = Vector2(2105, -313)
+rotation = -1.57079
+scale = Vector2(1.64, 1)
+
+[node name="StaticBlock9" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
+position = Vector2(2590, -528)
+rotation = -2.61799
+scale = Vector2(1.64, 1)
+
+[node name="StaticBlock11" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
+position = Vector2(2193, -577)
+rotation = -3.14159
+scale = Vector2(4.92, 1)
+
+[node name="StaticBlock10" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
+position = Vector2(2714, -400)
+rotation = -2.09439
+scale = Vector2(1.64, 1)
+
+[node name="StaticBlock8" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
+position = Vector2(2299, -221)
+rotation = -3.14159
+scale = Vector2(3.2, 1)
+
+[node name="TrophySet" type="Node" parent="Enviroment/Win Room"]
+script = ExtResource("13_f8if4")
+
+[node name="Trophy" type="Node2D" parent="Enviroment/Win Room/TrophySet"]
+position = Vector2(2246, -235)
+
+[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = -9.0
+offset_top = -142.0
+offset_right = 31.0
+offset_bottom = -102.0
+scale = Vector2(2.071, 2.27213)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = 11.0
+offset_top = -61.0
+offset_right = 51.0
+offset_bottom = -21.0
+scale = Vector2(1.14686, 1.35505)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = -2.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 26.0
+scale = Vector2(1.92302, 0.37591)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = 61.0
+offset_top = -65.0
+offset_right = 101.0
+offset_bottom = -25.0
+rotation = -0.658184
+scale = Vector2(1.29786, 0.382772)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = 98.0
+offset_top = -88.0
+offset_right = 138.0
+offset_bottom = -48.0
+rotation = -2.23284
+scale = Vector2(1.29786, 0.382772)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = -31.0
+offset_top = -104.0
+offset_right = 9.0
+offset_bottom = -64.0
+rotation = 0.986306
+scale = Vector2(1.29786, 0.382772)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -5
+offset_left = -45.0
+offset_top = -104.0
+offset_right = -5.0
+offset_bottom = -64.0
+rotation = -0.785397
+scale = Vector2(1.29786, 0.382772)
+color = Color(1, 0.867188, 0, 1)
+
+[node name="Label" type="Label" parent="Enviroment/Win Room/TrophySet/Trophy"]
+z_index = -4
+offset_left = 13.0
+offset_top = -128.0
+offset_right = 33.0
+offset_bottom = -105.0
+scale = Vector2(2.13587, 2.7008)
+text = "#1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enviroment/Win Room/TrophySet"]
+libraries = {
+&"": SubResource("AnimationLibrary_mwmob")
+}
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="Enviroment/Win Room/TrophySet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Win Room/TrophySet/Area2D"]
+position = Vector2(2279, -309.5)
+shape = SubResource("RectangleShape2D_mwmob")
+
+[node name="DoorArea" type="Area2D" parent="Enviroment/Win Room/TrophySet"]
+position = Vector2(2259, -319)
+scale = Vector2(1, 1.8)
+collision_layer = 2
+script = ExtResource("14_60msr")
+
+[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room/TrophySet/DoorArea"]
+z_index = -6
+offset_right = 40.0
+offset_bottom = 26.0
+scale = Vector2(1, 1.8)
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Win Room/TrophySet/DoorArea"]
+position = Vector2(20, 22.5)
+shape = SubResource("RectangleShape2D_sufl4")
+
+[connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
+[connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
+[connection signal="body_entered" from="BeatEmitter/AudioStartArea" to="BeatEmitter/AudioStartArea" method="_on_body_entered"]
+[connection signal="body_entered" from="BeatEmitter/AudioStartArea2" to="BeatEmitter/AudioStartArea2" method="_on_body_entered"]
+[connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]
+[connection signal="animation_finished" from="Enviroment/Win Room/TrophySet/AnimationPlayer" to="Enviroment/Win Room/TrophySet" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Enviroment/Win Room/TrophySet/Area2D" to="Enviroment/Win Room/TrophySet" method="_on_area_2d_body_entered"]

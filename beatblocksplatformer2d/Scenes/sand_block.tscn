@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bubexi2xoxfl1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsvvl"]
+size = Vector2(96, 32)
+
+[node name="SandBlock" type="RigidBody2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 16.0
+color = Color(0.707031, 0.679413, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qsvvl")

@@ -1,7 +1,8 @@
 extends Area2D
 
+
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player"):
 		return
-	
-	get_parent().set_new_check_point(self)
+	print("lala")
+	get_parent().enable_sound()

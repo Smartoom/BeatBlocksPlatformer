@@ -1,17 +1,83 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpgubtw7fh7nx"]
+[gd_scene load_steps=8 format=3 uid="uid://bpgubtw7fh7nx"]
 
 [ext_resource type="Script" uid="uid://bha3eoii8jk02" path="res://Scripts/player_body_2d.gd" id="1_d1l6g"]
 [ext_resource type="Texture2D" uid="uid://dprcy4mh6ptl5" path="res://icon.svg" id="1_m0wu6"]
+[ext_resource type="Script" uid="uid://pr4gwe6w4jsj" path="res://Scripts/interaction.gd" id="3_8oiy1"]
+[ext_resource type="Texture2D" uid="uid://bf3tji7rq10qh" path="res://DownKey.png" id="4_jxpcn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1l6g"]
-size = Vector2(32, 48)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_106fc"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="Gradient" id="Gradient_106fc"]
+offsets = PackedFloat32Array(0, 0.134387, 0.608696, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_106fc"]
+size = Vector2(30, 46)
 
 [node name="PlayerBody2D" type="CharacterBody2D"]
 script = ExtResource("1_d1l6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_d1l6g")
+shape = SubResource("CapsuleShape2D_106fc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="JumpParticles" type="CPUParticles2D" parent="."]
+z_index = 5
+position = Vector2(0, 24)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(2, 10)
+direction = Vector2(0, -1)
+spread = 2.0
+gravity = Vector2(0, 294)
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_106fc")
+
+[node name="LandParticles" type="CPUParticles2D" parent="."]
+z_index = 5
+position = Vector2(0, 24)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(2, 5)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 294)
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_106fc")
+
+[node name="FlipPivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="FlipPivot"]
 scale = Vector2(0.25, 0.375)
 texture = ExtResource("1_m0wu6")
+
+[node name="InteractionDetectionArea" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("3_8oiy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetectionArea"]
+shape = SubResource("RectangleShape2D_106fc")
+
+[node name="InteractionPrompt" type="Sprite2D" parent="InteractionDetectionArea"]
+visible = false
+position = Vector2(-1, -39)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_jxpcn")
+
+[connection signal="area_entered" from="InteractionDetectionArea" to="InteractionDetectionArea" method="_on_area_entered"]
+[connection signal="area_exited" from="InteractionDetectionArea" to="InteractionDetectionArea" method="_on_area_exited"]
