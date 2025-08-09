@@ -9,7 +9,7 @@ const JUMP_BUFFER = 0.3
 var time_since_jump_pressed = 999.0
 const jump_gravity = Vector2.DOWN * 450.0
 const normal_gravity = Vector2.DOWN * 650.0
-@onready var sprite = $FlipPivot/Sprite2D
+@onready var animated_sprite = $FlipPivot/AnimatedSprite2D
 @onready var jump_particles = $JumpParticles
 @onready var land_particles = $LandParticles
 
@@ -52,13 +52,31 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, GROUNDED_STOP_TIME)
 		else:
 			velocity.x = move_toward(velocity.x, 0, AIR_STOP_TIME)
-
+	
+	
 	move_and_slide()
 
+func _process(delta: float) -> void:
+	
+	handle_animation()
+
+var walking_inside_door = false
+func handle_animation():
+	if walking_inside_door:
+		animated_sprite.play("Walking In")
+		return
+	
+	if grounded:
+		if abs(velocity.x) == SPEED:
+			animated_sprite.play("Walking")
+		else:
+			animated_sprite.play("Idle")
+	else:
+		animated_sprite.play("Jump")
+
+
 func flip_character (direction):
-	if (direction > 0 and sprite.flip_h):
-		sprite.flip_h = false
+	if (direction > 0 and flip_pivot.scale.x == -1):
 		flip_pivot.scale.x = 1
-	elif (direction < 0 and not sprite.flip_h):
-		sprite.flip_h = true
+	elif (direction < 0 and not flip_pivot.scale.x == -1):
 		flip_pivot.scale.x = -1

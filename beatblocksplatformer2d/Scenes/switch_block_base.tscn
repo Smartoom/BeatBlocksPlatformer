@@ -9,9 +9,11 @@ size = Vector2(96, 32)
 script = ExtResource("1_f1iqt")
 
 [node name="ActivatedSprite" type="Sprite2D" parent="."]
+z_index = -5
 
 [node name="DeactivatedSprite" type="Sprite2D" parent="."]
 visible = false
+z_index = -5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eiowo")
