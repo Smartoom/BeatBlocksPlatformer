@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://2ni3ue3bvtrb"]
+[gd_scene load_steps=20 format=3 uid="uid://2ni3ue3bvtrb"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_0jhw5"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eqosv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_b2fon"]
 [ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_jydn8"]
 [ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="10_pwvbg"]
+[ext_resource type="PackedScene" uid="uid://bubexi2xoxfl1" path="res://Scenes/sand_block.tscn" id="12_o7bax"]
 [ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_cvw5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
@@ -31,6 +32,8 @@ size = Vector2(9923, 1843.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sufl4"]
 size = Vector2(40, 45)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7bax"]
 
 [node name="Level1" type="Node2D"]
 
@@ -162,6 +165,15 @@ color = Color(0, 0, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Win Room/DoorArea"]
 position = Vector2(20, 22.5)
 shape = SubResource("RectangleShape2D_sufl4")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(296, -44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_o7bax")
+
+[node name="SandBlock" parent="." instance=ExtResource("12_o7bax")]
+position = Vector2(221, 95)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]

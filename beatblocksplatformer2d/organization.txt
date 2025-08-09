@@ -1,4 +1,5 @@
 visual layers:
 	50: ui text
 	0 : player
-	-5: switch block
+	-5: switch block/ trophy
+	-6: door
