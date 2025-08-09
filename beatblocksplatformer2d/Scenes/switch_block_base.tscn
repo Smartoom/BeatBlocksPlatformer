@@ -8,12 +8,10 @@ size = Vector2(96, 32)
 [node name="SwitchBlockBase" type="StaticBody2D"]
 script = ExtResource("1_f1iqt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -5
-offset_left = -48.0
-offset_top = -16.0
-offset_right = 48.0
-offset_bottom = 16.0
+[node name="ActivatedSprite" type="Sprite2D" parent="."]
+
+[node name="DeactivatedSprite" type="Sprite2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eiowo")

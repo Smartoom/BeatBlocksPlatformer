@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0bwyu5xge2vl"]
+[gd_scene load_steps=5 format=3 uid="uid://b0bwyu5xge2vl"]
 
 [ext_resource type="PackedScene" uid="uid://bw6ddn1vqqjmy" path="res://Scenes/switch_block_base.tscn" id="1_c0amg"]
+[ext_resource type="Texture2D" uid="uid://ugqectf8bivm" path="res://sprites/pinkBeatSwitchPlatform-Sheet.png" id="2_px3r6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndsyr"]
+atlas = ExtResource("2_px3r6")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px3r6"]
+atlas = ExtResource("2_px3r6")
+region = Rect2(0, 32, 96, 32)
 
 [node name="SwitchBlockPink" instance=ExtResource("1_c0amg")]
 
-[node name="ColorRect" parent="." index="0"]
-color = Color(0.87451, 0, 1, 1)
+[node name="ActivatedSprite" parent="." index="0"]
+texture = SubResource("AtlasTexture_ndsyr")
+
+[node name="DeactivatedSprite" parent="." index="1"]
+texture = SubResource("AtlasTexture_px3r6")

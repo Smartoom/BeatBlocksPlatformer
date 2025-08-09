@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqvn07c45vqbj"]
+[gd_scene load_steps=5 format=3 uid="uid://bqvn07c45vqbj"]
 
 [ext_resource type="PackedScene" uid="uid://bw6ddn1vqqjmy" path="res://Scenes/switch_block_base.tscn" id="1_lixv2"]
+[ext_resource type="Texture2D" uid="uid://uifftcley85e" path="res://sprites/blueBeatSwitchPlatform-Sheet.png" id="2_f4p5o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4p5o"]
+atlas = ExtResource("2_f4p5o")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0ir6"]
+atlas = ExtResource("2_f4p5o")
+region = Rect2(0, 32, 96, 32)
 
 [node name="SwitchBlockBlue" instance=ExtResource("1_lixv2")]
 active = true
 
-[node name="ColorRect" parent="." index="0"]
-color = Color(0, 0.505882, 1, 1)
+[node name="ActivatedSprite" parent="." index="0"]
+texture = SubResource("AtlasTexture_f4p5o")
+
+[node name="DeactivatedSprite" parent="." index="1"]
+texture = SubResource("AtlasTexture_q0ir6")
