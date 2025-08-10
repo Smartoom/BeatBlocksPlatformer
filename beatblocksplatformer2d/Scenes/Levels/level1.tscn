@@ -124,6 +124,32 @@ size = Vector2(102, 139)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sufl4"]
 size = Vector2(32.3734, 39)
 
+[sub_resource type="Animation" id="Animation_v3vqe"]
+resource_name = "FadeIn"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.57, -0.25, 0, 0.25, 0, 0.001, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.966667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
 [sub_resource type="Animation" id="Animation_ryjqc"]
 resource_name = "FadeOut"
 length = 2.0
@@ -175,32 +201,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_v3vqe"]
-resource_name = "FadeIn"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.57, -0.25, 0, 0.25, 0, 0.001, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.966667)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3vqe"]

@@ -91,6 +91,7 @@ func WalkInDoor(position:Vector2):
 	global_position = position + Vector2.UP * HEIGHT / 2
 	
 	var pos_in_screen = get_global_transform_with_canvas().origin
-	pos_in_screen.x=pos_in_screen.x/get_viewport_rect().size.x
-	pos_in_screen.y=pos_in_screen.y/get_viewport_rect().size.y
+	pos_in_screen.x = clamp(pos_in_screen.x, 0, get_viewport_rect().size.x)/ get_viewport_rect().size.x
+	pos_in_screen.y = clamp(pos_in_screen.y, 0, get_viewport_rect().size.y)/ get_viewport_rect().size.y
+	print(pos_in_screen)
 	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_out(pos_in_screen)
