@@ -19,6 +19,9 @@ const normal_gravity = Vector2.DOWN * 650.0
 var walking_inside_door = false
 var grounded = false
 
+func _ready() -> void:
+	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_in(get_player_position_for_shader())
+
 func handleGravity(delta: float):
 	if not grounded:
 		if (Input.is_action_pressed("Up") && velocity.y<=0):
@@ -89,9 +92,10 @@ func flip_character (direction):
 func WalkInDoor(position:Vector2):
 	walking_inside_door = true
 	global_position = position + Vector2.UP * HEIGHT / 2
-	
+	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_out(get_player_position_for_shader())
+
+func get_player_position_for_shader():
 	var pos_in_screen = get_global_transform_with_canvas().origin
 	pos_in_screen.x = clamp(pos_in_screen.x, 0, get_viewport_rect().size.x)/ get_viewport_rect().size.x
 	pos_in_screen.y = clamp(pos_in_screen.y, 0, get_viewport_rect().size.y)/ get_viewport_rect().size.y
-	print(pos_in_screen)
-	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_out(pos_in_screen)
+	return pos_in_screen

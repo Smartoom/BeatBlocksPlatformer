@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://bi5hdn5pkih0w"]
+
+[ext_resource type="Script" uid="uid://3cbluq5ylflv" path="res://Scripts/cut_out_canvas.gd" id="1_tqcfy"]
+[ext_resource type="Shader" uid="uid://6p7qa3qtd74w" path="res://ScreenCutOut.gdshader" id="2_tf6hv"]
+[ext_resource type="Texture2D" uid="uid://cd7irafinqovn" path="res://sprites/cutOutMask.png" id="3_d3snb"]
+
+[sub_resource type="Animation" id="Animation_v3vqe"]
+resource_name = "FadeIn"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.57, -0.25, 0, 0.25, 0, 0.001, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.966667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ryjqc"]
+resource_name = "FadeOut"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.001, -0.25, 0, 0.25, 0, 0.010821, -0.25, 0, 0.25, 0, 0.01, -0.25, 0, 0.25, 0, 0.57, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.433333, 0.683333, 2)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xe7un"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v3vqe"]
+_data = {
+&"FadeIn": SubResource("Animation_v3vqe"),
+&"FadeOut": SubResource("Animation_ryjqc"),
+&"RESET": SubResource("Animation_xe7un")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3vqe"]
+shader = ExtResource("2_tf6hv")
+shader_parameter/cut_out_mask = ExtResource("3_d3snb")
+shader_parameter/scale = 0.1
+shader_parameter/position_on_screen = Vector2(0.5, 0.5)
+
+[node name="CutOutCanvasLayer" type="CanvasLayer" groups=["CutOutCanvasLayer"]]
+script = ExtResource("1_tqcfy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v3vqe")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_v3vqe")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

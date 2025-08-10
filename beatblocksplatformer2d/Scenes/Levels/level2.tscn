@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://2ni3ue3bvtrb"]
+[gd_scene load_steps=21 format=3 uid="uid://2ni3ue3bvtrb"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_0jhw5"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eqosv"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_jydn8"]
 [ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="10_pwvbg"]
 [ext_resource type="PackedScene" uid="uid://bubexi2xoxfl1" path="res://Scenes/sand_block.tscn" id="12_o7bax"]
+[ext_resource type="PackedScene" uid="uid://bl4x7m1fqc28r" path="res://Scenes/fragile_block.tscn" id="13_flysx"]
+[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="14_0jhw5"]
 [ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_cvw5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
@@ -115,12 +117,10 @@ grow_vertical = 2
 text = "Press R to go back to a checkpoint"
 
 [node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_b2fon")]
-visible = false
 position = Vector2(2, 49)
 
 [node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_b2fon")]
-visible = false
-position = Vector2(573, 132)
+position = Vector2(340, 34)
 
 [node name="Enviroment" type="Node" parent="."]
 
@@ -146,7 +146,34 @@ position = Vector2(336, 96)
 [node name="StaticBlockShort2" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
 position = Vector2(1048, 46)
 
+[node name="StaticBlockShort3" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
+position = Vector2(1265, 271)
+
 [node name="Sect1" type="Node" parent="Enviroment"]
+
+[node name="SandBlock" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(1158, 44)
+
+[node name="SandBlock2" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(461, 96)
+
+[node name="SandBlock3" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(605, 97)
+
+[node name="SandBlock4" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(754, 96)
+
+[node name="SandBlock5" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(923, 94)
+
+[node name="SandBlock6" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(1301, -64)
+
+[node name="SandBlock7" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(1470, -66)
+
+[node name="Fragile_Block" parent="Enviroment/Sect1" instance=ExtResource("13_flysx")]
+position = Vector2(223, 100)
 
 [node name="Win Room" type="Node" parent="Enviroment"]
 
@@ -168,20 +195,7 @@ color = Color(0, 0, 0, 1)
 position = Vector2(20, 22.5)
 shape = SubResource("RectangleShape2D_sufl4")
 
-[node name="SandBlock" parent="." instance=ExtResource("12_o7bax")]
-position = Vector2(221, 95)
-
-[node name="SandBlock2" parent="." instance=ExtResource("12_o7bax")]
-position = Vector2(461, 96)
-
-[node name="SandBlock3" parent="." instance=ExtResource("12_o7bax")]
-position = Vector2(605, 97)
-
-[node name="SandBlock4" parent="." instance=ExtResource("12_o7bax")]
-position = Vector2(754, 96)
-
-[node name="SandBlock5" parent="." instance=ExtResource("12_o7bax")]
-position = Vector2(923, 94)
+[node name="CutOutCanvasLayer" parent="." instance=ExtResource("14_0jhw5")]
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
