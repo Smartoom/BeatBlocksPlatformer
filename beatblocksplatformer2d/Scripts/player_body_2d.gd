@@ -6,6 +6,7 @@ const GROUNDED_STOP_TIME = 25
 const AIR_STOP_TIME = 6.25
 const JUMP_VELOCITY = -250.0
 const JUMP_BUFFER = 0.3
+const HEIGHT = 26
 var time_since_jump_pressed = 999.0
 const jump_gravity = Vector2.DOWN * 450.0
 const normal_gravity = Vector2.DOWN * 650.0
@@ -15,6 +16,7 @@ const normal_gravity = Vector2.DOWN * 650.0
 
 @onready var flip_pivot = $FlipPivot
 
+var walking_inside_door = false
 var grounded = false
 
 func handleGravity(delta: float):
@@ -25,6 +27,10 @@ func handleGravity(delta: float):
 			velocity += normal_gravity * delta
 	
 func _physics_process(delta: float) -> void:
+	if walking_inside_door:
+		velocity = Vector2.ZERO
+		return
+	
 	if not grounded and is_on_floor():
 		land_particles.emitting = true
 	
@@ -60,7 +66,6 @@ func _process(delta: float) -> void:
 	
 	handle_animation()
 
-var walking_inside_door = false
 func handle_animation():
 	if walking_inside_door:
 		animated_sprite.play("Walking In")
@@ -80,3 +85,12 @@ func flip_character (direction):
 		flip_pivot.scale.x = 1
 	elif (direction < 0 and not flip_pivot.scale.x == -1):
 		flip_pivot.scale.x = -1
+
+func WalkInDoor(position:Vector2):
+	walking_inside_door = true
+	global_position = position + Vector2.UP * HEIGHT / 2
+	
+	var pos_in_screen = get_global_transform_with_canvas().origin
+	pos_in_screen.x=pos_in_screen.x/get_viewport_rect().size.x
+	pos_in_screen.y=pos_in_screen.y/get_viewport_rect().size.y
+	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_out(pos_in_screen)

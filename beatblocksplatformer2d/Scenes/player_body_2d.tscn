@@ -167,7 +167,7 @@ shape = SubResource("CapsuleShape2D_106fc")
 
 [node name="JumpParticles" type="CPUParticles2D" parent="."]
 z_index = 5
-position = Vector2(0, 24)
+position = Vector2(0, 16)
 emitting = false
 amount = 5
 lifetime = 0.5
@@ -186,7 +186,7 @@ color_ramp = SubResource("Gradient_106fc")
 
 [node name="LandParticles" type="CPUParticles2D" parent="."]
 z_index = 5
-position = Vector2(0, 24)
+position = Vector2(0, 16)
 emitting = false
 amount = 5
 lifetime = 0.5

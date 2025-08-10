@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://chcjv2rn2n48v"]
+[gd_scene load_steps=37 format=4 uid="uid://chcjv2rn2n48v"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_nqasx"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_ryjqc"]
@@ -8,13 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_syfhk"]
 [ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_u45xj"]
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_ay16s"]
-[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_6748a"]
-[ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="10_5y6uu"]
 [ext_resource type="PackedScene" uid="uid://b0bwyu5xge2vl" path="res://Scenes/switch_block_pink.tscn" id="11_m4h5f"]
 [ext_resource type="PackedScene" uid="uid://bqvn07c45vqbj" path="res://Scenes/switch_block_blue.tscn" id="12_d2e0u"]
 [ext_resource type="Script" uid="uid://bocrb3vwlkomg" path="res://Scripts/trophy_set.gd" id="13_f8if4"]
 [ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_60msr"]
 [ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="15_ryjqc"]
+[ext_resource type="Texture2D" uid="uid://d3204ux2ktw57" path="res://sprites/trophy.png" id="15_xe7un"]
+[ext_resource type="Script" uid="uid://3cbluq5ylflv" path="res://Scripts/cut_out_canvas.gd" id="16_bvs0b"]
+[ext_resource type="Shader" uid="uid://6p7qa3qtd74w" path="res://ScreenCutOut.gdshader" id="16_xe7un"]
+[ext_resource type="Texture2D" uid="uid://cd7irafinqovn" path="res://sprites/cutOutMask.png" id="17_bvs0b"]
+[ext_resource type="Texture2D" uid="uid://66mmash68t3a" path="res://sprites/door.png" id="17_v3vqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
 size = Vector2(86, 272)
@@ -32,6 +35,47 @@ glow_blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
 size = Vector2(192, 41)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xe7un"]
+texture = ExtResource("15_ryjqc")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_nqasx"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xe7un")
 
 [sub_resource type="Animation" id="Animation_1rqgg"]
 resource_name = "FallDown"
@@ -78,48 +122,99 @@ _data = {
 size = Vector2(102, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sufl4"]
-size = Vector2(40, 45)
+size = Vector2(32.3734, 39)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xe7un"]
-texture = ExtResource("15_ryjqc")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-3:3/0 = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+[sub_resource type="Animation" id="Animation_ryjqc"]
+resource_name = "FadeOut"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.001, -0.25, 0, 0.25, 0, 0.010821, -0.25, 0, 0.25, 0, 0.01, -0.25, 0, 0.25, 0, 0.57, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.433333, 0.683333, 2)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="TileSet" id="TileSet_nqasx"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_xe7un")
+[sub_resource type="Animation" id="Animation_xe7un"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_v3vqe"]
+resource_name = "FadeIn"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.57, -0.25, 0, 0.25, 0, 0.001, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.966667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v3vqe"]
+_data = {
+&"FadeIn": SubResource("Animation_v3vqe"),
+&"FadeOut": SubResource("Animation_ryjqc"),
+&"RESET": SubResource("Animation_xe7un")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3vqe"]
+shader = ExtResource("16_xe7un")
+shader_parameter/cut_out_mask = ExtResource("17_bvs0b")
+shader_parameter/scale = 0.1
+shader_parameter/position_on_screen = Vector2(0.5, 0.5)
 
 [node name="Level1" type="Node2D"]
 
@@ -136,7 +231,7 @@ stream = ExtResource("2_ryjqc")
 stream = ExtResource("3_xe7un")
 
 [node name="AudioStopArea" type="Area2D" parent="BeatEmitter"]
-position = Vector2(2398, -1185)
+position = Vector2(2071, -379)
 script = ExtResource("4_v3vqe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStopArea"]
@@ -144,7 +239,6 @@ position = Vector2(48, -81)
 shape = SubResource("RectangleShape2D_1rqgg")
 
 [node name="AudioStartArea" type="Area2D" parent="BeatEmitter"]
-visible = false
 position = Vector2(95, -129)
 script = ExtResource("5_bvs0b")
 
@@ -153,7 +247,7 @@ position = Vector2(674, -81)
 shape = SubResource("RectangleShape2D_akkqd")
 
 [node name="AudioStartArea2" type="Area2D" parent="BeatEmitter"]
-position = Vector2(1933, -1044)
+position = Vector2(1546, -233)
 script = ExtResource("5_bvs0b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea2"]
@@ -164,7 +258,7 @@ shape = SubResource("RectangleShape2D_8v7by")
 environment = SubResource("Environment_gojnm")
 
 [node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_syfhk")]
-position = Vector2(181, -126)
+position = Vector2(1912, -384)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
 zoom = Vector2(2, 2)
@@ -176,7 +270,7 @@ editor_draw_limits = true
 
 [node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
 script = ExtResource("7_u45xj")
-checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2")]
+checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2"), NodePath("CheckPointArea3"), NodePath("CheckPointArea4")]
 
 [node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
 visible = false
@@ -204,339 +298,109 @@ grow_vertical = 2
 text = "Press R to go back to a checkpoint"
 
 [node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_ay16s")]
-visible = false
-position = Vector2(-200, 125)
+position = Vector2(-2, -30)
 
 [node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_ay16s")]
-visible = false
-position = Vector2(573, 132)
+position = Vector2(657, -31)
+
+[node name="CheckPointArea3" parent="RestartHandler" instance=ExtResource("8_ay16s")]
+position = Vector2(1842, -31)
+
+[node name="CheckPointArea4" parent="RestartHandler" instance=ExtResource("8_ay16s")]
+position = Vector2(2088, -390)
 
 [node name="Enviroment" type="Node" parent="."]
 
-[node name="Bounds" type="Node" parent="Enviroment"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Enviroment"]
+tile_map_data = PackedByteArray("AAD//wAAAAABAAEAAAAAAAAAAAABAAEAAAD+/wAAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAADAAAAAAABAAEAAAD9/wAAAAABAAEAAAD9////AAABAAEAAAD9//7/AAABAAEAAAAEAAAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAEAAAAIAAAAAAABAAEAAAAJAAAAAAABAAEAAAAKAAAAAAABAAEAAAAKAPL/AAABAAEAAAALAPL/AAABAAEAAAAMAPL/AAABAAEAAAANAPL/AAABAAEAAAAOAPL/AAABAAEAAAAPAPL/AAABAAEAAAALAAAAAAABAAEAAAAMAAAAAAABAAEAAAACAP//AAABAAEAAAAEAP7/AAABAAEAAAAGAP3/AAABAAEAAAAGAP7/AAABAAEAAAAGAP//AAABAAEAAAAIAP7/AAABAAEAAAAGAPz/AAABAAEAAAALAP3/AAABAAEAAAANAPv/AAABAAEAAAAKAPr/AAABAAEAAAAHAPj/AAABAAEAAAALAPf/AAABAAEAAAAQAPf/AAABAAEAAAAPAPf/AAABAAEAAAAQAPj/AAABAAEAAAAQAPn/AAABAAEAAAAQAPr/AAABAAEAAAAQAPv/AAABAAEAAAAQAPz/AAABAAEAAAAQAP3/AAABAAEAAAAQAP7/AAABAAEAAAAQAP//AAABAAEAAAAQAAAAAAABAAEAAAAPAAAAAAABAAEAAAAOAAAAAAABAAEAAAANAAAAAAABAAEAAAD9//3/AAABAAEAAAD9//z/AAABAAEAAAD9//v/AAABAAEAAAD+//v/AAABAAEAAAD+//r/AAABAAEAAAD///r/AAABAAEAAAAAAPn/AAABAAEAAAABAPn/AAABAAEAAAABAPj/AAABAAEAAAACAPj/AAABAAEAAAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPr/AAABAAEAAAACAPr/AAABAAEAAAADAPr/AAABAAEAAAAEAPr/AAABAAEAAAAEAPn/AAABAAEAAAAEAPj/AAABAAEAAAAEAPf/AAABAAEAAAAFAPf/AAABAAEAAAAFAPb/AAABAAEAAAAFAPX/AAABAAEAAAAGAPX/AAABAAEAAAAGAPT/AAABAAEAAAAHAPT/AAABAAEAAAAIAPT/AAABAAEAAAAIAPP/AAABAAEAAAAJAPP/AAABAAEAAAAJAPL/AAABAAEAAAAIAPL/AAABAAEAAAAHAPP/AAABAAEAAAAGAPP/AAABAAEAAAAFAPT/AAABAAEAAAAEAPX/AAABAAEAAAAEAPb/AAABAAEAAAADAPb/AAABAAEAAAADAPf/AAABAAEAAAADAPj/AAABAAEAAAADAPn/AAABAAEAAAACAPn/AAABAAEAAAAAAPr/AAABAAEAAAAQAPL/AAABAAEAAAARAPL/AAABAAEAAAASAPL/AAABAAEAAAARAAAAAAABAAEAAAASAAAAAAABAAEAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAABAAEAAAAXAAAAAAABAAEAAAAYAAAAAAABAAEAAAAZAAAAAAABAAEAAAAaAAAAAAABAAEAAAAbAAAAAAABAAEAAAAcAAAAAAABAAEAAAAdAAAAAAABAAEAAAAXAP//AAABAAEAAAAZAP3/AAABAAEAAAAZAP7/AAABAAEAAAAZAP//AAABAAEAAAAbAP//AAABAAEAAAAeAAAAAAABAAEAAAAfAAAAAAABAAEAAAAgAAAAAAABAAEAAAAhAAAAAAABAAEAAAAiAAAAAAABAAEAAAAjAAAAAAABAAEAAAAkAAAAAAABAAEAAAAlAAAAAAABAAEAAAAmAAAAAAABAAEAAAAhAPz/AAABAAEAAAAiAPz/AAABAAEAAAAiAP3/AAABAAEAAAAiAP7/AAABAAEAAAAiAP//AAABAAEAAAAnAAAAAAABAAEAAAAoAAAAAAABAAEAAAApAAAAAAABAAEAAAAqAAAAAAABAAEAAAArAAAAAAABAAEAAAAsAAAAAAABAAEAAAAtAAAAAAABAAEAAAAuAAAAAAABAAEAAAAvAAAAAAABAAEAAAAwAAAAAAABAAEAAAAtAP7/AAABAAEAAAAtAP//AAABAAEAAAAtAP3/AAABAAEAAAAuAP//AAABAAEAAAAxAAAAAAABAAEAAAAyAAAAAAABAAEAAAAzAAAAAAABAAEAAAA0AAAAAAABAAEAAAA1AAAAAAABAAEAAAA1APv/AAABAAEAAAA1APz/AAABAAEAAAA1AP3/AAABAAEAAAA1AP7/AAABAAEAAAA1AP//AAABAAEAAAA2AAAAAAABAAEAAAA3AAAAAAABAAEAAAA4AAAAAAABAAEAAAA5AAAAAAABAAEAAAA6AAAAAAABAAEAAAA7AAAAAAABAAEAAAA8AAAAAAABAAEAAAA9AAAAAAABAAEAAAA+AAAAAAABAAEAAAA/AAAAAAABAAEAAABAAAAAAAABAAEAAABBAAAAAAABAAEAAABCAAAAAAABAAEAAABDAAAAAAABAAEAAABEAAAAAAABAAEAAABFAAAAAAABAAEAAABGAAAAAAABAAEAAABHAAAAAAABAAEAAABIAAAAAAABAAEAAABIAP//AAABAAEAAABIAP7/AAABAAEAAABIAP3/AAABAAEAAABIAPz/AAABAAEAAABIAPv/AAABAAEAAABIAPr/AAABAAEAAABIAPn/AAABAAEAAABIAPj/AAABAAEAAABIAPf/AAABAAEAAABIAPb/AAABAAEAAABHAPf/AAABAAEAAABIAPX/AAABAAEAAABIAPT/AAABAAEAAABIAPP/AAABAAEAAABIAPL/AAABAAEAAAA8AOz/AAABAAEAAAA7AOz/AAABAAEAAAA6AOz/AAABAAEAAABDAPX/AAABAAEAAABCAPX/AAABAAEAAABBAPX/AAABAAEAAABAAPX/AAABAAEAAAA/APX/AAABAAEAAAA+APX/AAABAAEAAAA9APX/AAABAAEAAAA8APX/AAABAAEAAAA7APX/AAABAAEAAAA6APX/AAABAAEAAAA5APX/AAABAAEAAAA4APX/AAABAAEAAAA3APX/AAABAAEAAAA2APX/AAABAAEAAAA1APX/AAABAAEAAAA0APX/AAABAAEAAAAzAPX/AAABAAEAAAAyAPX/AAABAAEAAAAxAPX/AAABAAEAAAAwAPX/AAABAAEAAAAwAPT/AAABAAEAAAAwAPP/AAABAAEAAAAwAPL/AAABAAEAAAAwAPH/AAABAAEAAAAwAPD/AAABAAEAAAAwAO//AAABAAEAAAAwAO7/AAABAAEAAAA5AOz/AAABAAEAAAAxAO3/AAABAAEAAAAzAOz/AAABAAEAAAA0AOz/AAABAAEAAAA1AOz/AAABAAEAAAA2AOz/AAABAAEAAAA3AOz/AAABAAEAAAA4AOz/AAABAAEAAAAwAO3/AAABAAEAAAAyAO3/AAABAAEAAAAyAOz/AAABAAEAAAA2AOv/AAABAAEAAAA3AOv/AAABAAEAAAA4AOv/AAABAAEAAAA8AO3/AAABAAEAAAA8AO7/AAABAAEAAAA9AO7/AAABAAEAAAA+AO7/AAABAAEAAAA/AO7/AAABAAEAAABAAO7/AAABAAEAAABBAO7/AAABAAEAAABCAO7/AAABAAEAAABDAO7/AAABAAEAAABCAO//AAABAAEAAABDAO//AAABAAEAAABEAO//AAABAAEAAABFAO//AAABAAEAAABFAPD/AAABAAEAAABGAPD/AAABAAEAAABGAPH/AAABAAEAAABHAPH/AAABAAEAAABHAPL/AAABAAEAAAA=")
+tile_set = SubResource("TileSet_nqasx")
 
-[node name="StaticBlock" parent="Enviroment/Bounds" instance=ExtResource("9_6748a")]
-position = Vector2(1225, -697)
-scale = Vector2(24.56, 1)
+[node name="SwitchBlockBlue" parent="Enviroment" instance=ExtResource("12_d2e0u")]
+position = Vector2(950, -111)
 
-[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("9_6748a")]
-position = Vector2(-339, -948)
-rotation = 1.57079
-scale = Vector2(4.05929, 0.960454)
+[node name="SwitchBlockBlue2" parent="Enviroment" instance=ExtResource("12_d2e0u")]
+position = Vector2(1316, -53)
 
-[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("9_6748a")]
-position = Vector2(2745, -962)
-rotation = -1.57079
-scale = Vector2(3.96, 1)
+[node name="SwitchBlockPink" parent="Enviroment" instance=ExtResource("11_m4h5f")]
+position = Vector2(1584, -113)
 
-[node name="StaticBlock6" parent="Enviroment" instance=ExtResource("9_6748a")]
-position = Vector2(-164, -950)
-rotation = -0.261799
-scale = Vector2(3.07773, 0.935815)
+[node name="SwitchBlockBlue3" parent="Enviroment" instance=ExtResource("12_d2e0u")]
+position = Vector2(1842, -104)
 
-[node name="StaticBlock7" parent="Enviroment" instance=ExtResource("9_6748a")]
-position = Vector2(56, -1113)
-rotation = -1.309
-scale = Vector2(2.02141, 0.935815)
+[node name="SwitchBlockPink2" parent="Enviroment" instance=ExtResource("11_m4h5f")]
+position = Vector2(1992, -44)
 
-[node name="StaticBlock8" parent="Enviroment" instance=ExtResource("9_6748a")]
-position = Vector2(721, -1237)
-scale = Vector2(10.3577, 0.935815)
+[node name="SwitchBlockPink3" parent="Enviroment" instance=ExtResource("11_m4h5f")]
+position = Vector2(2014, -165)
 
-[node name="Sect1" type="Node" parent="Enviroment"]
+[node name="SwitchBlockBlue4" parent="Enviroment" instance=ExtResource("12_d2e0u")]
+position = Vector2(2195, -227)
 
-[node name="StaticBlockShort" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(183, -788)
-
-[node name="StaticBlockShort9" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(392, -1081)
-
-[node name="StaticBlockShort4" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(262, -854)
-
-[node name="StaticBlockShort5" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(338, -918)
-
-[node name="StaticBlockShort6" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(239, -978)
-
-[node name="StaticBlockShort7" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(128, -1041)
-
-[node name="StaticBlockShort8" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(259, -1097)
-
-[node name="StaticBlockShort2" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(-85, -746)
-
-[node name="StaticBlockShort3" parent="Enviroment/Sect1" instance=ExtResource("10_5y6uu")]
-position = Vector2(8, -804)
-
-[node name="StaticBlock4" parent="Enviroment/Sect1" instance=ExtResource("9_6748a")]
-position = Vector2(87, -794)
-rotation = -1.57079
-
-[node name="StaticBlock5" parent="Enviroment/Sect1" instance=ExtResource("9_6748a")]
-position = Vector2(403, -905)
-rotation = -1.57079
-scale = Vector2(3, 1)
-
-[node name="Sect2" type="Node" parent="Enviroment"]
-
-[node name="StaticBlockShort9" parent="Enviroment/Sect2" instance=ExtResource("10_5y6uu")]
-position = Vector2(697, -746)
-
-[node name="StaticBlockShort11" parent="Enviroment/Sect2" instance=ExtResource("10_5y6uu")]
-position = Vector2(1429, -746)
-
-[node name="StaticBlockShort10" parent="Enviroment/Sect2" instance=ExtResource("10_5y6uu")]
-position = Vector2(813, -746)
-
-[node name="StaticBlock" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
-position = Vector2(756, -762)
-rotation = -1.57079
-
-[node name="StaticBlock2" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
-position = Vector2(988, -880)
-
-[node name="StaticBlock3" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
-position = Vector2(1036, -788)
-rotation = -1.57079
-scale = Vector2(1.28, 1)
-
-[node name="StaticBlock4" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
-position = Vector2(1388, -762)
-rotation = -1.57079
-scale = Vector2(0.8, 1)
-
-[node name="StaticBlock5" parent="Enviroment/Sect2" instance=ExtResource("9_6748a")]
-position = Vector2(1585, -809)
-rotation = -1.57079
-scale = Vector2(1.64, 1)
-
-[node name="SwitchBlockPink" parent="Enviroment/Sect2" instance=ExtResource("11_m4h5f")]
-position = Vector2(854, -868)
-
-[node name="SwitchBlockPink2" parent="Enviroment/Sect2" instance=ExtResource("11_m4h5f")]
-position = Vector2(1273, -772)
-
-[node name="SwitchBlockPink3" parent="Enviroment/Sect2" instance=ExtResource("11_m4h5f")]
-position = Vector2(1506, -838)
-
-[node name="Sect3" type="Node" parent="Enviroment"]
-
-[node name="StaticBlockShort14" parent="Enviroment/Sect3" instance=ExtResource("10_5y6uu")]
-position = Vector2(2219, -893)
-
-[node name="SwitchBlockBlue" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
-position = Vector2(1793, -730)
-
-[node name="SwitchBlockBlue2" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
-position = Vector2(2097, -838)
-
-[node name="SwitchBlockPink" parent="Enviroment/Sect3" instance=ExtResource("11_m4h5f")]
-position = Vector2(1939, -788)
-
-[node name="SwitchBlockBlue3" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
-position = Vector2(2335, -822)
-
-[node name="SwitchBlockBlue4" parent="Enviroment/Sect3" instance=ExtResource("12_d2e0u")]
-position = Vector2(2615, -934)
-
-[node name="SwitchBlockPink2" parent="Enviroment/Sect3" instance=ExtResource("11_m4h5f")]
-position = Vector2(2469, -756)
-
-[node name="SwitchBlockPink3" parent="Enviroment/Sect3" instance=ExtResource("11_m4h5f")]
-position = Vector2(2469, -888)
-
-[node name="StaticBlock6" parent="Enviroment/Sect3" instance=ExtResource("9_6748a")]
-position = Vector2(2244, -804)
-rotation = -1.57079
-scale = Vector2(1.64, 1)
-
-[node name="StaticBlockShort12" parent="Enviroment/Sect3" instance=ExtResource("10_5y6uu")]
-position = Vector2(2706, -994)
-
-[node name="StaticBlockShort13" parent="Enviroment/Sect3" instance=ExtResource("10_5y6uu")]
-position = Vector2(2558, -1041)
-
-[node name="Win Room" type="Node" parent="Enviroment"]
-
-[node name="StaticBlock7" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
-position = Vector2(2097, -1201)
-rotation = -1.57079
-scale = Vector2(1.64, 1)
-
-[node name="StaticBlock9" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
-position = Vector2(2582, -1416)
-rotation = -2.61799
-scale = Vector2(1.64, 1)
-
-[node name="StaticBlock11" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
-position = Vector2(2185, -1465)
-rotation = -3.14159
-scale = Vector2(4.92, 1)
-
-[node name="StaticBlock10" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
-position = Vector2(2706, -1288)
-rotation = -2.09439
-scale = Vector2(1.64, 1)
-
-[node name="StaticBlock8" parent="Enviroment/Win Room" instance=ExtResource("9_6748a")]
-position = Vector2(2291, -1109)
-rotation = -3.14159
-scale = Vector2(3.2, 1)
-
-[node name="TrophySet" type="Node" parent="Enviroment/Win Room"]
+[node name="TrophySet" type="Node" parent="Enviroment"]
 script = ExtResource("13_f8if4")
 
-[node name="Trophy" type="Node2D" parent="Enviroment/Win Room/TrophySet"]
-position = Vector2(2238, -1123)
+[node name="Trophy" type="Node2D" parent="Enviroment/TrophySet"]
+position = Vector2(1775, -353)
 
-[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
+[node name="Trophy" type="Sprite2D" parent="Enviroment/TrophySet/Trophy"]
 z_index = -5
-offset_left = -9.0
-offset_top = -142.0
-offset_right = 31.0
-offset_bottom = -102.0
-scale = Vector2(2.071, 2.27213)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
+position = Vector2(18, -48)
+texture = ExtResource("15_xe7un")
 
-[node name="ColorRect2" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -5
-offset_left = 11.0
-offset_top = -61.0
-offset_right = 51.0
-offset_bottom = -21.0
-scale = Vector2(1.14686, 1.35505)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect3" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -5
-offset_left = -2.0
-offset_top = -14.0
-offset_right = 38.0
-offset_bottom = 26.0
-scale = Vector2(1.92302, 0.37591)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect4" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -5
-offset_left = 61.0
-offset_top = -65.0
-offset_right = 101.0
-offset_bottom = -25.0
-rotation = -0.658184
-scale = Vector2(1.29786, 0.382772)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect5" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -5
-offset_left = 98.0
-offset_top = -88.0
-offset_right = 138.0
-offset_bottom = -48.0
-rotation = -2.23284
-scale = Vector2(1.29786, 0.382772)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect6" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -5
-offset_left = -31.0
-offset_top = -104.0
-offset_right = 9.0
-offset_bottom = -64.0
-rotation = 0.986306
-scale = Vector2(1.29786, 0.382772)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect7" type="ColorRect" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -5
-offset_left = -45.0
-offset_top = -104.0
-offset_right = -5.0
-offset_bottom = -64.0
-rotation = -0.785397
-scale = Vector2(1.29786, 0.382772)
-color = Color(1, 0.867188, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Enviroment/Win Room/TrophySet/Trophy"]
-z_index = -4
-offset_left = 13.0
-offset_top = -128.0
-offset_right = 33.0
-offset_bottom = -105.0
-scale = Vector2(2.13587, 2.7008)
-text = "#1"
-metadata/_edit_use_anchors_ = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Enviroment/Win Room/TrophySet"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enviroment/TrophySet"]
 libraries = {
 &"": SubResource("AnimationLibrary_mwmob")
 }
 autoplay = "idle"
 
-[node name="Area2D" type="Area2D" parent="Enviroment/Win Room/TrophySet"]
-position = Vector2(-8, -888)
+[node name="Area2D" type="Area2D" parent="Enviroment/TrophySet"]
+position = Vector2(-482, -111)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Win Room/TrophySet/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/TrophySet/Area2D"]
 position = Vector2(2279, -309.5)
 shape = SubResource("RectangleShape2D_mwmob")
 
-[node name="DoorArea" type="Area2D" parent="Enviroment/Win Room/TrophySet"]
-position = Vector2(2251, -1207)
-scale = Vector2(1, 1.8)
+[node name="DoorArea" type="Area2D" parent="Enviroment/TrophySet"]
+position = Vector2(1793, -353)
+scale = Vector2(0.556, 1)
 collision_layer = 2
 script = ExtResource("14_60msr")
 
-[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room/TrophySet/DoorArea"]
+[node name="Sprite2D" type="Sprite2D" parent="Enviroment/TrophySet/DoorArea"]
 z_index = -6
-offset_right = 40.0
-offset_bottom = 26.0
-scale = Vector2(1, 1.8)
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
+position = Vector2(-0.187216, -23)
+texture = ExtResource("17_v3vqe")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Win Room/TrophySet/DoorArea"]
-position = Vector2(20, 22.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/TrophySet/DoorArea"]
+position = Vector2(-0.187578, -18.5)
 shape = SubResource("RectangleShape2D_sufl4")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD//wAAAAABAAEAAAAAAAAAAAABAAEAAAD+/wAAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAADAAAAAAABAAEAAAD9/wAAAAABAAEAAAD9////AAABAAEAAAD9//7/AAABAAEAAAAEAAAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAEAAAAIAAAAAAABAAEAAAAJAAAAAAABAAEAAAAKAAAAAAABAAEAAAAKAPL/AAABAAEAAAALAPL/AAABAAEAAAAMAPL/AAABAAEAAAANAPL/AAABAAEAAAAOAPL/AAABAAEAAAAPAPL/AAABAAEAAAALAAAAAAABAAEAAAAMAAAAAAABAAEAAAACAP//AAABAAEAAAAEAP7/AAABAAEAAAAGAP3/AAABAAEAAAAGAP7/AAABAAEAAAAGAP//AAABAAEAAAAIAP7/AAABAAEAAAAGAPz/AAABAAEAAAALAP3/AAABAAEAAAANAPv/AAABAAEAAAAKAPr/AAABAAEAAAAHAPj/AAABAAEAAAALAPf/AAABAAEAAAAQAPf/AAABAAEAAAAPAPf/AAABAAEAAAAQAPj/AAABAAEAAAAQAPn/AAABAAEAAAAQAPr/AAABAAEAAAAQAPv/AAABAAEAAAAQAPz/AAABAAEAAAAQAP3/AAABAAEAAAAQAP7/AAABAAEAAAAQAP//AAABAAEAAAAQAAAAAAABAAEAAAAPAAAAAAABAAEAAAAOAAAAAAABAAEAAAANAAAAAAABAAEAAAD9//3/AAABAAEAAAD9//z/AAABAAEAAAD9//v/AAABAAEAAAD+//v/AAABAAEAAAD+//r/AAABAAEAAAD///r/AAABAAEAAAAAAPn/AAABAAEAAAABAPn/AAABAAEAAAABAPj/AAABAAEAAAACAPj/AAABAAEAAAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPr/AAABAAEAAAACAPr/AAABAAEAAAADAPr/AAABAAEAAAAEAPr/AAABAAEAAAAEAPn/AAABAAEAAAAEAPj/AAABAAEAAAAEAPf/AAABAAEAAAAFAPf/AAABAAEAAAAFAPb/AAABAAEAAAAFAPX/AAABAAEAAAAGAPX/AAABAAEAAAAGAPT/AAABAAEAAAAHAPT/AAABAAEAAAAIAPT/AAABAAEAAAAIAPP/AAABAAEAAAAJAPP/AAABAAEAAAAJAPL/AAABAAEAAAAIAPL/AAABAAEAAAAHAPP/AAABAAEAAAAGAPP/AAABAAEAAAAFAPT/AAABAAEAAAAEAPX/AAABAAEAAAAEAPb/AAABAAEAAAADAPb/AAABAAEAAAADAPf/AAABAAEAAAADAPj/AAABAAEAAAADAPn/AAABAAEAAAACAPn/AAABAAEAAAAAAPr/AAABAAEAAAAQAPL/AAABAAEAAAARAPL/AAABAAEAAAASAPL/AAABAAEAAAARAAAAAAABAAEAAAASAAAAAAABAAEAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAABAAEAAAAXAAAAAAABAAEAAAAYAAAAAAABAAEAAAAZAAAAAAABAAEAAAAaAAAAAAABAAEAAAAbAAAAAAABAAEAAAAcAAAAAAABAAEAAAAdAAAAAAABAAEAAAAXAP//AAABAAEAAAAZAP3/AAABAAEAAAAZAP7/AAABAAEAAAAZAP//AAABAAEAAAAbAP//AAABAAEAAAAeAAAAAAABAAEAAAAfAAAAAAABAAEAAAAgAAAAAAABAAEAAAAhAAAAAAABAAEAAAAiAAAAAAABAAEAAAAjAAAAAAABAAEAAAAkAAAAAAABAAEAAAAlAAAAAAABAAEAAAAmAAAAAAABAAEAAAAhAPz/AAABAAEAAAAiAPz/AAABAAEAAAAiAP3/AAABAAEAAAAiAP7/AAABAAEAAAAiAP//AAABAAEAAAAnAAAAAAABAAEAAAAoAAAAAAABAAEAAAApAAAAAAABAAEAAAAqAAAAAAABAAEAAAArAAAAAAABAAEAAAAsAAAAAAABAAEAAAAtAAAAAAABAAEAAAAuAAAAAAABAAEAAAAvAAAAAAABAAEAAAAwAAAAAAABAAEAAAAtAP7/AAABAAEAAAAtAP//AAABAAEAAAAtAP3/AAABAAEAAAAuAP//AAABAAEAAAAxAAAAAAABAAEAAAAyAAAAAAABAAEAAAAzAAAAAAABAAEAAAA0AAAAAAABAAEAAAA1AAAAAAABAAEAAAA1APv/AAABAAEAAAA1APz/AAABAAEAAAA1AP3/AAABAAEAAAA1AP7/AAABAAEAAAA1AP//AAABAAEAAAA2AAAAAAABAAEAAAA3AAAAAAABAAEAAAA4AAAAAAABAAEAAAA5AAAAAAABAAEAAAA6AAAAAAABAAEAAAA7AAAAAAABAAEAAAA8AAAAAAABAAEAAAA9AAAAAAABAAEAAAA+AAAAAAABAAEAAAA/AAAAAAABAAEAAABAAAAAAAABAAEAAABBAAAAAAABAAEAAABCAAAAAAABAAEAAABDAAAAAAABAAEAAABEAAAAAAABAAEAAABFAAAAAAABAAEAAABGAAAAAAABAAEAAABHAAAAAAABAAEAAABIAAAAAAABAAEAAABIAP//AAABAAEAAABIAP7/AAABAAEAAABIAP3/AAABAAEAAABIAPz/AAABAAEAAABIAPv/AAABAAEAAABIAPr/AAABAAEAAABIAPn/AAABAAEAAABIAPj/AAABAAEAAABIAPf/AAABAAEAAABIAPb/AAABAAEAAABHAPf/AAABAAEAAABIAPX/AAABAAEAAABIAPT/AAABAAEAAABIAPP/AAABAAEAAABIAPL/AAABAAEAAAA8AOz/AAABAAEAAAA7AOz/AAABAAEAAAA6AOz/AAABAAEAAABDAPX/AAABAAEAAABCAPX/AAABAAEAAABBAPX/AAABAAEAAABAAPX/AAABAAEAAAA/APX/AAABAAEAAAA+APX/AAABAAEAAAA9APX/AAABAAEAAAA8APX/AAABAAEAAAA7APX/AAABAAEAAAA6APX/AAABAAEAAAA5APX/AAABAAEAAAA4APX/AAABAAEAAAA3APX/AAABAAEAAAA2APX/AAABAAEAAAA1APX/AAABAAEAAAA0APX/AAABAAEAAAAzAPX/AAABAAEAAAAyAPX/AAABAAEAAAAxAPX/AAABAAEAAAAwAPX/AAABAAEAAAAwAPT/AAABAAEAAAAwAPP/AAABAAEAAAAwAPL/AAABAAEAAAAwAPH/AAABAAEAAAAwAPD/AAABAAEAAAAwAO//AAABAAEAAAAwAO7/AAABAAEAAAA5AOz/AAABAAEAAAAxAO3/AAABAAEAAAAzAOz/AAABAAEAAAA0AOz/AAABAAEAAAA1AOz/AAABAAEAAAA2AOz/AAABAAEAAAA3AOz/AAABAAEAAAA4AOz/AAABAAEAAAAwAO3/AAABAAEAAAAyAO3/AAABAAEAAAAyAOz/AAABAAEAAAA2AOv/AAABAAEAAAA3AOv/AAABAAEAAAA4AOv/AAABAAEAAAA8AO3/AAABAAEAAAA8AO7/AAABAAEAAAA9AO7/AAABAAEAAAA+AO7/AAABAAEAAAA/AO7/AAABAAEAAABAAO7/AAABAAEAAABBAO7/AAABAAEAAABCAO7/AAABAAEAAABDAO7/AAABAAEAAABCAO//AAABAAEAAABDAO//AAABAAEAAABEAO//AAABAAEAAABFAO//AAABAAEAAABFAPD/AAABAAEAAABGAPD/AAABAAEAAABGAPH/AAABAAEAAABHAPH/AAABAAEAAABHAPL/AAABAAEAAAA=")
-tile_set = SubResource("TileSet_nqasx")
+[node name="Timer" type="Timer" parent="Enviroment/TrophySet/DoorArea"]
+wait_time = 2.0
 
-[node name="SwitchBlockBlue" parent="." instance=ExtResource("12_d2e0u")]
-position = Vector2(950, -111)
+[node name="CutOutCanvasLayer" type="CanvasLayer" parent="." groups=["CutOutCanvasLayer"]]
+script = ExtResource("16_bvs0b")
 
-[node name="SwitchBlockBlue2" parent="." instance=ExtResource("12_d2e0u")]
-position = Vector2(1316, -53)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CutOutCanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_v3vqe")
+}
+autoplay = "FadeIn"
 
-[node name="SwitchBlockPink" parent="." instance=ExtResource("11_m4h5f")]
-position = Vector2(1584, -113)
-
-[node name="SwitchBlockBlue3" parent="." instance=ExtResource("12_d2e0u")]
-position = Vector2(1842, -104)
-
-[node name="SwitchBlockPink2" parent="." instance=ExtResource("11_m4h5f")]
-position = Vector2(1992, -44)
-
-[node name="SwitchBlockPink3" parent="." instance=ExtResource("11_m4h5f")]
-position = Vector2(2014, -165)
-
-[node name="SwitchBlockBlue4" parent="." instance=ExtResource("12_d2e0u")]
-position = Vector2(2195, -227)
+[node name="ColorRect" type="ColorRect" parent="CutOutCanvasLayer"]
+material = SubResource("ShaderMaterial_v3vqe")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
 [connection signal="body_entered" from="BeatEmitter/AudioStartArea" to="BeatEmitter/AudioStartArea" method="_on_body_entered"]
 [connection signal="body_entered" from="BeatEmitter/AudioStartArea2" to="BeatEmitter/AudioStartArea2" method="_on_body_entered"]
 [connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]
-[connection signal="animation_finished" from="Enviroment/Win Room/TrophySet/AnimationPlayer" to="Enviroment/Win Room/TrophySet" method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="Enviroment/Win Room/TrophySet/Area2D" to="Enviroment/Win Room/TrophySet" method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="Enviroment/TrophySet/AnimationPlayer" to="Enviroment/TrophySet" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Enviroment/TrophySet/Area2D" to="Enviroment/TrophySet" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Enviroment/TrophySet/DoorArea/Timer" to="Enviroment/TrophySet/DoorArea" method="_on_timer_timeout"]
