@@ -10,6 +10,11 @@ func _process(delta: float) -> void:
 		var player_node = get_tree().get_first_node_in_group("Player")
 		player_node.position = checkpoints.get(last_checkpoint).global_position
 		restart_prompt.visible = false
+		
+		#reset resettable objects
+		var list_of_things_to_reset := get_tree().get_nodes_in_group("Resettable")
+		for object_to_reset in list_of_things_to_reset:
+			object_to_reset.reset_object()
 
 
 func _on_restart_prompt_area_body_entered(body : Node2D) -> void:

@@ -47,7 +47,7 @@ size = Vector2(96, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdjh7"]
 size = Vector2(96, 19)
 
-[node name="Fall_Block" type="RigidBody2D"]
+[node name="Fall_Block" type="RigidBody2D" groups=["Resettable"]]
 collision_mask = 0
 freeze = true
 contact_monitor = true
@@ -66,6 +66,7 @@ texture = ExtResource("2_2lmsn")
 shape = SubResource("RectangleShape2D_qsvvl")
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

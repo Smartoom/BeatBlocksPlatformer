@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cljvp8o41x8w6"]
+[gd_scene load_steps=13 format=3 uid="uid://cljvp8o41x8w6"]
 
 [ext_resource type="Texture2D" uid="uid://cjnu8dg4a4by5" path="res://sprites/sandPlatform-Sheet.png" id="1_j5odk"]
 [ext_resource type="Script" uid="uid://dvvhhekxdxxpt" path="res://Scripts/fragile_block_animated.gd" id="1_o2gcj"]
 [ext_resource type="Texture2D" uid="uid://berqktfi75jww" path="res://sprites/sandBreakParticles.png" id="2_o2gcj"]
-[ext_resource type="Script" uid="uid://bv2rjxh0oip61" path="res://Scripts/kysParticles.gd" id="3_di2ox"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxai7"]
 atlas = ExtResource("1_j5odk")
@@ -63,7 +62,7 @@ size = Vector2(96, 19)
 atlas = ExtResource("2_o2gcj")
 region = Rect2(11, 6, 5, 4)
 
-[node name="Fragile_Block_Animated" type="AnimatableBody2D"]
+[node name="Fragile_Block_Animated" type="AnimatableBody2D" groups=["Resettable"]]
 script = ExtResource("1_o2gcj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -71,6 +70,7 @@ sprite_frames = SubResource("SpriteFrames_8el85")
 animation = &"Break"
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bq7lh")
@@ -98,7 +98,6 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 angular_velocity_min = -150.0
 angular_velocity_max = 150.0
-script = ExtResource("3_di2ox")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

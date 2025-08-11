@@ -1,5 +1,9 @@
 extends RigidBody2D
 
+var original_position : Vector2
+
+func _ready() -> void:
+	original_position = global_position
 
 func _on_timer_timeout() -> void:
 	freeze = false
@@ -12,3 +16,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	$ShakeAnimationPlayer.play("Shake")
 	$Timer.start()
+
+func reset_object():
+	global_position = original_position
+	linear_velocity = Vector2.ZERO
+	freeze = true
