@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://2ni3ue3bvtrb"]
+[gd_scene load_steps=23 format=3 uid="uid://2ni3ue3bvtrb"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_0jhw5"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eqosv"]
@@ -8,13 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_jywle"]
 [ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_l1hk4"]
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_b2fon"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="9_hpjhc"]
 [ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_jydn8"]
 [ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="10_pwvbg"]
+[ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="11_6a7cf"]
 [ext_resource type="PackedScene" uid="uid://bubexi2xoxfl1" path="res://Scenes/sand_block.tscn" id="12_o7bax"]
 [ext_resource type="PackedScene" uid="uid://bl4x7m1fqc28r" path="res://Scenes/fragile_block.tscn" id="13_flysx"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="14_0jhw5"]
-[ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_cvw5d"]
-[ext_resource type="PackedScene" uid="uid://dm8v7qqkydwyb" path="res://Scenes/rotator.tscn" id="14_eqosv"]
+[ext_resource type="PackedScene" uid="uid://c8jmpgdadnv8g" path="res://Scenes/fragile_rotator.tscn" id="15_eqosv"]
+[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="18_56d2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
 size = Vector2(86, 272)
@@ -32,9 +34,6 @@ glow_blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
 size = Vector2(9923, 1843.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufl4"]
-size = Vector2(40, 45)
 
 [node name="Level1" type="Node2D"]
 
@@ -84,13 +83,13 @@ position = Vector2(1528, 115)
 zoom = Vector2(2, 2)
 limit_left = -350
 limit_top = -500
-limit_right = 2775
+limit_right = 3240
 limit_bottom = 500
 editor_draw_limits = true
 
 [node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
 script = ExtResource("7_l1hk4")
-checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2")]
+checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2"), NodePath("CheckPointArea3"), NodePath("CheckPointArea4"), NodePath("CheckPointArea5")]
 
 [node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
 visible = false
@@ -126,12 +125,26 @@ position = Vector2(340, 34)
 [node name="CheckPointArea3" parent="RestartHandler" instance=ExtResource("8_b2fon")]
 position = Vector2(1404, 234)
 
+[node name="CheckPointArea4" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+position = Vector2(2100, 7)
+
+[node name="CheckPointArea5" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+position = Vector2(2745, -16)
+
 [node name="Enviroment" type="Node" parent="."]
 
 [node name="Bounds" type="Node" parent="Enviroment"]
 
 [node name="StaticBlock" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
 position = Vector2(0, 100)
+scale = Vector2(2, 1)
+
+[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
+position = Vector2(2965, 30)
+scale = Vector2(2, 1)
+
+[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
+position = Vector2(2101, 61)
 scale = Vector2(2, 1)
 
 [node name="StaticBlockShort" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
@@ -145,6 +158,15 @@ position = Vector2(1404, 284)
 
 [node name="StaticBlockShort4" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
 position = Vector2(1541, 256)
+
+[node name="StaticBlock_Rotator" parent="Enviroment/Bounds" instance=ExtResource("11_6a7cf")]
+position = Vector2(1822, 226)
+
+[node name="Fragile Rotator" parent="Enviroment/Bounds" instance=ExtResource("15_eqosv")]
+position = Vector2(2455, 16)
+
+[node name="Fall_Block" parent="Enviroment/Bounds" instance=ExtResource("12_o7bax")]
+position = Vector2(2740, 30)
 
 [node name="Sect1" type="Node" parent="Enviroment"]
 
@@ -183,26 +205,21 @@ position = Vector2(1353, 350)
 
 [node name="Win Room" type="Node" parent="Enviroment"]
 
-[node name="DoorArea" type="Area2D" parent="Enviroment/Win Room"]
-position = Vector2(2259, -319)
-scale = Vector2(1, 1.8)
-collision_layer = 2
-script = ExtResource("14_cvw5d")
-can_interact = true
+[node name="DoorArea" parent="Enviroment/Win Room" instance=ExtResource("9_hpjhc")]
+position = Vector2(2958, 13)
 
-[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room/DoorArea"]
-z_index = -6
-offset_right = 40.0
-offset_bottom = 26.0
-scale = Vector2(1, 1.8)
-color = Color(0, 0, 0, 1)
+[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room"]
+z_index = -10
+offset_left = 2815.0
+offset_top = -100.0
+offset_right = 3113.0
+offset_bottom = 77.0
+color = Color(0.0156863, 0.0196078, 0.0980392, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Win Room/DoorArea"]
-position = Vector2(20, 22.5)
-shape = SubResource("RectangleShape2D_sufl4")
-
-[node name="Rotator" parent="Enviroment" instance=ExtResource("14_eqosv")]
-position = Vector2(1761, 158)
+[node name="PointLight2D" type="PointLight2D" parent="Enviroment/Win Room"]
+position = Vector2(2958, -11)
+scale = Vector2(5, 4.093)
+texture = ExtResource("18_56d2c")
 
 [node name="CutOutCanvasLayer" parent="." instance=ExtResource("14_0jhw5")]
 visible = false

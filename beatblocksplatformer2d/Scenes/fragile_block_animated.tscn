@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://cljvp8o41x8w6"]
+
+[ext_resource type="Texture2D" uid="uid://cjnu8dg4a4by5" path="res://sprites/sandPlatform-Sheet.png" id="1_j5odk"]
+[ext_resource type="Script" uid="uid://dvvhhekxdxxpt" path="res://Scripts/fragile_block_animated.gd" id="1_o2gcj"]
+[ext_resource type="Texture2D" uid="uid://berqktfi75jww" path="res://sprites/sandBreakParticles.png" id="2_o2gcj"]
+[ext_resource type="Script" uid="uid://bv2rjxh0oip61" path="res://Scripts/kysParticles.gd" id="3_di2ox"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxai7"]
+atlas = ExtResource("1_j5odk")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hiu0"]
+atlas = ExtResource("1_j5odk")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nslo"]
+atlas = ExtResource("1_j5odk")
+region = Rect2(0, 64, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g662j"]
+atlas = ExtResource("1_j5odk")
+region = Rect2(0, 96, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lmsn"]
+atlas = ExtResource("1_j5odk")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8el85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxai7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hiu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nslo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g662j")
+}],
+"loop": false,
+"name": &"Break",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lmsn")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq7lh"]
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bglch"]
+size = Vector2(96, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdm5x"]
+atlas = ExtResource("2_o2gcj")
+region = Rect2(11, 6, 5, 4)
+
+[node name="Fragile_Block_Animated" type="AnimatableBody2D"]
+script = ExtResource("1_o2gcj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8el85")
+animation = &"Break"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bq7lh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_bglch")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+texture = SubResource("AtlasTexture_kdm5x")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+use_fixed_seed = true
+seed = 2
+emission_shape = 3
+emission_rect_extents = Vector2(48, 8)
+direction = Vector2(0, -1)
+spread = 20.57
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -150.0
+angular_velocity_max = 150.0
+script = ExtResource("3_di2ox")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="CPUParticles2D" to="CPUParticles2D" method="_on_finished"]

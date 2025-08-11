@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://chcjv2rn2n48v"]
+[gd_scene load_steps=28 format=4 uid="uid://chcjv2rn2n48v"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_nqasx"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_ryjqc"]
@@ -11,11 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://b0bwyu5xge2vl" path="res://Scenes/switch_block_pink.tscn" id="11_m4h5f"]
 [ext_resource type="PackedScene" uid="uid://bqvn07c45vqbj" path="res://Scenes/switch_block_blue.tscn" id="12_d2e0u"]
 [ext_resource type="Script" uid="uid://bocrb3vwlkomg" path="res://Scripts/trophy_set.gd" id="13_f8if4"]
-[ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_60msr"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="14_ryjqc"]
 [ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="15_ryjqc"]
 [ext_resource type="Texture2D" uid="uid://d3204ux2ktw57" path="res://sprites/trophy.png" id="15_xe7un"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="16_xe7un"]
-[ext_resource type="Texture2D" uid="uid://66mmash68t3a" path="res://sprites/door.png" id="17_v3vqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
 size = Vector2(86, 272)
@@ -118,9 +117,6 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwmob"]
 size = Vector2(102, 139)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufl4"]
-size = Vector2(32.3734, 39)
 
 [node name="Level1" type="Node2D"]
 
@@ -266,23 +262,8 @@ position = Vector2(-482, -111)
 position = Vector2(2279, -309.5)
 shape = SubResource("RectangleShape2D_mwmob")
 
-[node name="DoorArea" type="Area2D" parent="Enviroment/TrophySet"]
+[node name="DoorArea" parent="Enviroment/TrophySet" instance=ExtResource("14_ryjqc")]
 position = Vector2(1793, -353)
-scale = Vector2(0.556, 1)
-collision_layer = 2
-script = ExtResource("14_60msr")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enviroment/TrophySet/DoorArea"]
-z_index = -6
-position = Vector2(-0.187216, -23)
-texture = ExtResource("17_v3vqe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/TrophySet/DoorArea"]
-position = Vector2(-0.187578, -18.5)
-shape = SubResource("RectangleShape2D_sufl4")
-
-[node name="Timer" type="Timer" parent="Enviroment/TrophySet/DoorArea"]
-wait_time = 2.0
 
 [node name="CutOutCanvasLayer" parent="." instance=ExtResource("16_xe7un")]
 visible = false
@@ -294,4 +275,3 @@ visible = false
 [connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]
 [connection signal="animation_finished" from="Enviroment/TrophySet/AnimationPlayer" to="Enviroment/TrophySet" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Enviroment/TrophySet/Area2D" to="Enviroment/TrophySet" method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Enviroment/TrophySet/DoorArea/Timer" to="Enviroment/TrophySet/DoorArea" method="_on_timer_timeout"]

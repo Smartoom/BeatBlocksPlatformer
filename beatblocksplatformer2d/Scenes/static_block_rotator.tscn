@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://c30thvgync074"]
+
+[ext_resource type="PackedScene" uid="uid://dm8v7qqkydwyb" path="res://Scenes/rotator.tscn" id="1_cqtc5"]
+[ext_resource type="Texture2D" uid="uid://bmdrydbgal5og" path="res://sprites/checkered line pattern.png" id="2_s0iyl"]
+[ext_resource type="PackedScene" uid="uid://b2edftmmwc30x" path="res://Scenes/animated_block.tscn" id="3_cqtc5"]
+
+[node name="StaticBlock_Rotator" node_paths=PackedStringArray("blocks", "lines") instance=ExtResource("1_cqtc5")]
+blocks = [NodePath("animated_block"), NodePath("animated_block2"), NodePath("animated_block3"), NodePath("animated_block4")]
+speed = 0.75
+distance = 150.0
+lines = [NodePath("Line2D"), NodePath("Line2D2"), NodePath("Line2D3"), NodePath("Line2D4")]
+
+[node name="Line2D" parent="." index="0"]
+points = PackedVector2Array(0, 0, 0, -150)
+
+[node name="Line2D2" type="Line2D" parent="." index="1"]
+z_index = -6
+points = PackedVector2Array(0, 0, 0, 150)
+width = 2.0
+texture = ExtResource("2_s0iyl")
+texture_mode = 1
+
+[node name="Line2D3" type="Line2D" parent="." index="2"]
+z_index = -6
+points = PackedVector2Array(0, 0, 150, 0)
+width = 2.0
+texture = ExtResource("2_s0iyl")
+texture_mode = 1
+
+[node name="Line2D4" type="Line2D" parent="." index="3"]
+z_index = -6
+points = PackedVector2Array(0, 0, -150, 0)
+width = 2.0
+texture = ExtResource("2_s0iyl")
+texture_mode = 1
+
+[node name="animated_block" parent="." index="4" instance=ExtResource("3_cqtc5")]
+position = Vector2(150, 0)
+
+[node name="animated_block2" parent="." index="5" instance=ExtResource("3_cqtc5")]
+position = Vector2(-150, 0)
+
+[node name="animated_block3" parent="." index="6" instance=ExtResource("3_cqtc5")]
+position = Vector2(0, 150)
+
+[node name="animated_block4" parent="." index="7" instance=ExtResource("3_cqtc5")]
+position = Vector2(0, -150)
