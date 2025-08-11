@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BeatBlocksPlatformer2D"
-run/main_scene="uid://chcjv2rn2n48v"
+run/main_scene="uid://2ni3ue3bvtrb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -50,4 +50,5 @@ Restart={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_repeat=1
 environment/defaults/default_clear_color=Color(0.0144958, 0.0196934, 0.0976563, 1)

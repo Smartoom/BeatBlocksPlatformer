@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm8v7qqkydwyb"]
+
+[ext_resource type="PackedScene" uid="uid://bl4x7m1fqc28r" path="res://Scenes/fragile_block.tscn" id="1_pg5r1"]
+[ext_resource type="Script" uid="uid://c06mt4s0y8lqp" path="res://Scenes/rotator.gd" id="1_t85ae"]
+[ext_resource type="Texture2D" uid="uid://bmdrydbgal5og" path="res://sprites/checkered line pattern.png" id="3_4bg14"]
+
+[node name="Fragile Rotator" type="Node2D" node_paths=PackedStringArray("blocks", "lines")]
+script = ExtResource("1_t85ae")
+blocks = [NodePath("Fragile_Block"), NodePath("Fragile_Block2"), NodePath("Fragile_Block3"), NodePath("Fragile_Block4")]
+speed = 1.0
+distance = 120.0
+lines = [NodePath("Line2D"), NodePath("Line2D2"), NodePath("Line2D3"), NodePath("Line2D4")]
+
+[node name="Fragile_Block" parent="." instance=ExtResource("1_pg5r1")]
+position = Vector2(120, 0)
+
+[node name="Fragile_Block2" parent="." instance=ExtResource("1_pg5r1")]
+position = Vector2(-120, 0)
+
+[node name="Fragile_Block3" parent="." instance=ExtResource("1_pg5r1")]
+position = Vector2(0, 120)
+
+[node name="Fragile_Block4" parent="." instance=ExtResource("1_pg5r1")]
+position = Vector2(0, -120)
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -6
+points = PackedVector2Array(0, 0, 0, -120)
+width = 2.0
+texture = ExtResource("3_4bg14")
+texture_mode = 1
+
+[node name="Line2D2" type="Line2D" parent="."]
+z_index = -6
+points = PackedVector2Array(0, 0, 0, -120)
+width = 2.0
+texture = ExtResource("3_4bg14")
+texture_mode = 1
+
+[node name="Line2D3" type="Line2D" parent="."]
+z_index = -6
+points = PackedVector2Array(0, 0, 0, -120)
+width = 2.0
+texture = ExtResource("3_4bg14")
+texture_mode = 1
+
+[node name="Line2D4" type="Line2D" parent="."]
+z_index = -6
+points = PackedVector2Array(0, 0, 0, -120)
+width = 2.0
+texture = ExtResource("3_4bg14")
+texture_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://2ni3ue3bvtrb"]
+[gd_scene load_steps=22 format=3 uid="uid://2ni3ue3bvtrb"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_0jhw5"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eqosv"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4x7m1fqc28r" path="res://Scenes/fragile_block.tscn" id="13_flysx"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="14_0jhw5"]
 [ext_resource type="Script" uid="uid://b6rl4y566b0g1" path="res://Scripts/door_area.gd" id="14_cvw5d"]
+[ext_resource type="PackedScene" uid="uid://dm8v7qqkydwyb" path="res://Scenes/rotator.tscn" id="14_eqosv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
 size = Vector2(86, 272)
@@ -77,7 +78,7 @@ shape = SubResource("RectangleShape2D_8v7by")
 environment = SubResource("Environment_gojnm")
 
 [node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_jywle")]
-position = Vector2(-1, -2)
+position = Vector2(1528, 115)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
 zoom = Vector2(2, 2)
@@ -122,6 +123,9 @@ position = Vector2(2, 49)
 [node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_b2fon")]
 position = Vector2(340, 34)
 
+[node name="CheckPointArea3" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+position = Vector2(1404, 234)
+
 [node name="Enviroment" type="Node" parent="."]
 
 [node name="Bounds" type="Node" parent="Enviroment"]
@@ -130,16 +134,6 @@ position = Vector2(340, 34)
 position = Vector2(0, 100)
 scale = Vector2(2, 1)
 
-[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
-position = Vector2(-331, -60)
-rotation = 1.57079
-scale = Vector2(4.05929, 0.960454)
-
-[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
-position = Vector2(2753, -74)
-rotation = -1.57079
-scale = Vector2(3.96, 1)
-
 [node name="StaticBlockShort" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
 position = Vector2(336, 96)
 
@@ -147,7 +141,10 @@ position = Vector2(336, 96)
 position = Vector2(1048, 46)
 
 [node name="StaticBlockShort3" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
-position = Vector2(1265, 271)
+position = Vector2(1404, 284)
+
+[node name="StaticBlockShort4" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
+position = Vector2(1541, 256)
 
 [node name="Sect1" type="Node" parent="Enviroment"]
 
@@ -175,6 +172,15 @@ position = Vector2(1470, -66)
 [node name="Fragile_Block" parent="Enviroment/Sect1" instance=ExtResource("13_flysx")]
 position = Vector2(223, 100)
 
+[node name="Fall_Block" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(1159, 350)
+
+[node name="Fall_Block2" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(1256, 350)
+
+[node name="Fall_Block3" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+position = Vector2(1353, 350)
+
 [node name="Win Room" type="Node" parent="Enviroment"]
 
 [node name="DoorArea" type="Area2D" parent="Enviroment/Win Room"]
@@ -195,7 +201,11 @@ color = Color(0, 0, 0, 1)
 position = Vector2(20, 22.5)
 shape = SubResource("RectangleShape2D_sufl4")
 
+[node name="Rotator" parent="Enviroment" instance=ExtResource("14_eqosv")]
+position = Vector2(1761, 158)
+
 [node name="CutOutCanvasLayer" parent="." instance=ExtResource("14_0jhw5")]
+visible = false
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
