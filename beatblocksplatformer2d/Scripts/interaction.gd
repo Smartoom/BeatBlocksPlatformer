@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var interact_prompt := $InteractionPrompt
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	interact_prompt.visible = false
 	for ob in listOfPossibleInteractibles:
 		if ob.can_interact:

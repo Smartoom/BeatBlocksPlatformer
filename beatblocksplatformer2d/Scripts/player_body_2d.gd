@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	handle_animation()
 
@@ -89,9 +89,9 @@ func flip_character (direction):
 	elif (direction < 0 and not flip_pivot.scale.x == -1):
 		flip_pivot.scale.x = -1
 
-func WalkInDoor(position:Vector2):
+func WalkInDoor(door_position:Vector2):
 	walking_inside_door = true
-	global_position = position + Vector2.UP * HEIGHT / 2
+	global_position = door_position + Vector2.UP * HEIGHT / 2
 	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_out(get_player_position_for_shader())
 
 func get_player_position_for_shader():

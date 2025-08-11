@@ -5,7 +5,7 @@ var last_checkpoint :int = 0
 @onready var restart_prompt := $CanvasLayer/RichTextLabel
 #var should_prompt_restart = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Restart"):
 		var player_node = get_tree().get_first_node_in_group("Player")
 		player_node.position = checkpoints.get(last_checkpoint).global_position

@@ -6,6 +6,7 @@
 
 [node name="Fragile Rotator" node_paths=PackedStringArray("blocks", "lines") instance=ExtResource("1_wcy65")]
 blocks = [NodePath("Fragile_Block_Animated"), NodePath("Fragile_Block_Animated2"), NodePath("Fragile_Block_Animated3"), NodePath("Fragile_Block_Animated4")]
+speed = 0.75
 lines = [NodePath("Line2D"), NodePath("Line2D2"), NodePath("Line2D3"), NodePath("Line2D4")]
 
 [node name="Line2D2" type="Line2D" parent="." index="1"]
