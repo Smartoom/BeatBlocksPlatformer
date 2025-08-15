@@ -1,0 +1,204 @@
+[gd_scene load_steps=20 format=4 uid="uid://dacaj4ml06rre"]
+
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_c346c"]
+[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_46s4o"]
+[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_ndqic"]
+[ext_resource type="Script" uid="uid://bav1ecjcyn6rs" path="res://Scripts/audio_stop_area.gd" id="4_vqlhw"]
+[ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_la4le"]
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_opn2v"]
+[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_jk2yk"]
+[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_otlb7"]
+[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_hgq1i"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="10_wbnnf"]
+[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="11_qgayc"]
+[ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="12_foaqw"]
+[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="13_lsqbk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8qla"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_du1gc"]
+size = Vector2(100, 100)
+
+[sub_resource type="Environment" id="Environment_gojnm"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
+size = Vector2(9923, 1843.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l8qla"]
+texture = ExtResource("12_foaqw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_du1gc"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_l8qla")
+
+[node name="Level4" type="Node2D"]
+
+[node name="BeatEmitter" type="Node" parent="."]
+script = ExtResource("1_c346c")
+
+[node name="Timer" type="Timer" parent="BeatEmitter"]
+autostart = true
+
+[node name="BopAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
+stream = ExtResource("2_46s4o")
+
+[node name="BapAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
+stream = ExtResource("3_ndqic")
+
+[node name="AudioStopArea" type="Area2D" parent="BeatEmitter"]
+position = Vector2(907, -557)
+script = ExtResource("4_vqlhw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStopArea"]
+position = Vector2(48, -81)
+shape = SubResource("RectangleShape2D_l8qla")
+
+[node name="AudioStartArea" type="Area2D" parent="BeatEmitter"]
+position = Vector2(582, -157)
+script = ExtResource("5_la4le")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea"]
+position = Vector2(674, -81)
+shape = SubResource("RectangleShape2D_du1gc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gojnm")
+
+[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_opn2v")]
+position = Vector2(-2, 31)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
+zoom = Vector2(2, 2)
+limit_left = -400
+limit_top = -1300
+limit_right = 400
+limit_bottom = 200
+editor_draw_limits = true
+
+[node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
+script = ExtResource("7_jk2yk")
+checkpoints = [NodePath("CheckPointArea")]
+
+[node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartHandler/RestartPromptArea"]
+visible = false
+position = Vector2(0, 1522)
+shape = SubResource("RectangleShape2D_sb12i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RestartHandler"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RestartHandler/CanvasLayer"]
+visible = false
+z_index = 50
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to go back to a checkpoint"
+
+[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_otlb7")]
+position = Vector2(2, 49)
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="Bounds" type="Node" parent="Enviroment"]
+
+[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("9_hgq1i")]
+visible = false
+position = Vector2(-384, -500)
+rotation = 1.5708
+scale = Vector2(12, 1)
+
+[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("9_hgq1i")]
+visible = false
+position = Vector2(384, -500)
+rotation = 1.5708
+scale = Vector2(12, 1)
+
+[node name="Win Room" type="Node" parent="Enviroment"]
+
+[node name="DoorArea" parent="Enviroment/Win Room" instance=ExtResource("10_wbnnf")]
+position = Vector2(-29, -1023)
+can_interact = true
+
+[node name="ColorRect" type="ColorRect" parent="Enviroment/Win Room"]
+z_index = -10
+offset_left = -172.0
+offset_top = -1136.0
+offset_right = 126.0
+offset_bottom = -959.0
+color = Color(0.0156863, 0.0196078, 0.0980392, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Enviroment/Win Room"]
+position = Vector2(-29, -1047)
+scale = Vector2(5, 4.093)
+texture = ExtResource("11_qgayc")
+
+[node name="StaticBlock3" parent="Enviroment/Win Room" instance=ExtResource("9_hgq1i")]
+position = Vector2(-22, -1006)
+scale = Vector2(2, 1)
+
+[node name="Sect1" type="Node" parent="Enviroment"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Enviroment/Sect1"]
+tile_map_data = PackedByteArray("AAD9/wIAAAABAAEAAAD+/wIAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAABAAEAAAALAPn/AAABAAEAAAALAPr/AAABAAEAAAALAPv/AAABAAEAAAALAPz/AAABAAEAAAALAP3/AAABAAEAAAALAP7/AAABAAEAAAALAP//AAABAAEAAAALAAAAAAABAAEAAAALAAEAAAABAAEAAAALAAIAAAABAAEAAAALAAMAAAABAAEAAAALAAQAAAABAAEAAAALAAUAAAABAAEAAAALAAYAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAEAAAAMAPn/AAABAAEAAAAMAPr/AAABAAEAAAAMAPv/AAABAAEAAAAMAPz/AAABAAEAAAAMAP3/AAABAAEAAAAMAP7/AAABAAEAAAAMAP//AAABAAEAAAAMAAAAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAAMAAYAAAABAAEAAAAMAAcAAAABAAEAAAAMAAgAAAABAAEAAADz//n/AAABAAEAAADz//r/AAABAAEAAADz//v/AAABAAEAAADz//z/AAABAAEAAADz//3/AAABAAEAAADz//7/AAABAAEAAADz////AAABAAEAAADz/wAAAAABAAEAAADz/wEAAAABAAEAAADz/wIAAAABAAEAAADz/wMAAAABAAEAAADz/wQAAAABAAEAAADz/wUAAAABAAEAAADz/wYAAAABAAEAAADz/wcAAAABAAEAAADz/wgAAAABAAEAAAD0//n/AAABAAEAAAD0//r/AAABAAEAAAD0//v/AAABAAEAAAD0//z/AAABAAEAAAD0//3/AAABAAEAAAD0//7/AAABAAEAAAD0////AAABAAEAAAD0/wAAAAABAAEAAAD0/wEAAAABAAEAAAD0/wIAAAABAAEAAAD0/wMAAAABAAEAAAD0/wQAAAABAAEAAAD0/wUAAAABAAEAAAD0/wYAAAABAAEAAAD0/wcAAAABAAEAAAD0/wgAAAABAAEAAAALAOT/AAABAAEAAAALAOX/AAABAAEAAAALAOb/AAABAAEAAAALAOf/AAABAAEAAAALAOj/AAABAAEAAAALAOn/AAABAAEAAAALAOr/AAABAAEAAAALAOv/AAABAAEAAAALAOz/AAABAAEAAAALAO3/AAABAAEAAAALAPb/AAABAAEAAAALAPf/AAABAAEAAAALAPj/AAABAAEAAAAMAOT/AAABAAEAAAAMAOX/AAABAAEAAAAMAOb/AAABAAEAAAAMAOf/AAABAAEAAAAMAOj/AAABAAEAAAAMAOn/AAABAAEAAAAMAOr/AAABAAEAAAAMAOv/AAABAAEAAAAMAOz/AAABAAEAAAAMAO3/AAABAAEAAAAMAPb/AAABAAEAAAAMAPf/AAABAAEAAAAMAPj/AAABAAEAAADz/+3/AAABAAEAAADz/+7/AAABAAEAAADz/+//AAABAAEAAADz//D/AAABAAEAAADz//H/AAABAAEAAADz//L/AAABAAEAAADz//P/AAABAAEAAADz//T/AAABAAEAAADz//X/AAABAAEAAADz//b/AAABAAEAAADz//f/AAABAAEAAADz//j/AAABAAEAAAD0/+3/AAABAAEAAAD0/+7/AAABAAEAAAD0/+//AAABAAEAAAD0//D/AAABAAEAAAD0//H/AAABAAEAAAD0//L/AAABAAEAAAD0//P/AAABAAEAAAD0//T/AAABAAEAAAD0//X/AAABAAEAAAD0//b/AAABAAEAAAD0//f/AAABAAEAAAD0//j/AAABAAEAAADz/9v/AAABAAEAAADz/9z/AAABAAEAAADz/93/AAABAAEAAADz/97/AAABAAEAAADz/9//AAABAAEAAADz/+D/AAABAAEAAADz/+H/AAABAAEAAADz/+L/AAABAAEAAADz/+P/AAABAAEAAADz/+T/AAABAAEAAADz/+X/AAABAAEAAADz/+b/AAABAAEAAADz/+f/AAABAAEAAADz/+j/AAABAAEAAADz/+n/AAABAAEAAADz/+r/AAABAAEAAADz/+v/AAABAAEAAADz/+z/AAABAAEAAAD0/9v/AAABAAEAAAD0/9z/AAABAAEAAAD0/93/AAABAAEAAAD0/97/AAABAAEAAAD0/9//AAABAAEAAAD0/+D/AAABAAEAAAD0/+H/AAABAAEAAAD0/+L/AAABAAEAAAD0/+P/AAABAAEAAAD0/+T/AAABAAEAAAD0/+X/AAABAAEAAAD0/+b/AAABAAEAAAD0/+f/AAABAAEAAAD0/+j/AAABAAEAAAD0/+n/AAABAAEAAAD0/+r/AAABAAEAAAD0/+v/AAABAAEAAAD0/+z/AAABAAEAAAALANf/AAABAAEAAAALANj/AAABAAEAAAALANn/AAABAAEAAAALANr/AAABAAEAAAALANv/AAABAAEAAAALANz/AAABAAEAAAALAN3/AAABAAEAAAALAN7/AAABAAEAAAALAN//AAABAAEAAAALAOD/AAABAAEAAAALAOH/AAABAAEAAAALAOL/AAABAAEAAAALAOP/AAABAAEAAAAMANf/AAABAAEAAAAMANj/AAABAAEAAAAMANn/AAABAAEAAAAMANr/AAABAAEAAAAMANv/AAABAAEAAAAMANz/AAABAAEAAAAMAN3/AAABAAEAAAAMAN7/AAABAAEAAAAMAN//AAABAAEAAAAMAOD/AAABAAEAAAAMAOH/AAABAAEAAAAMAOL/AAABAAEAAAAMAOP/AAABAAEAAADz/9f/AAABAAEAAADz/9j/AAABAAEAAADz/9n/AAABAAEAAADz/9r/AAABAAEAAAD0/9f/AAABAAEAAAD0/9j/AAABAAEAAAD0/9n/AAABAAEAAAD0/9r/AAABAAEAAAALANb/AAABAAEAAAAMANb/AAABAAEAAADz/9b/AAABAAEAAAD0/9b/AAABAAEAAAALAO7/AAABAAEAAAALAO//AAABAAEAAAALAPD/AAABAAEAAAALAPH/AAABAAEAAAALAPL/AAABAAEAAAALAPP/AAABAAEAAAALAPT/AAABAAEAAAALAPX/AAABAAEAAAAMAO7/AAABAAEAAAAMAO//AAABAAEAAAAMAPD/AAABAAEAAAAMAPH/AAABAAEAAAAMAPL/AAABAAEAAAAMAPP/AAABAAEAAAAMAPT/AAABAAEAAAAMAPX/AAABAAEAAAA=")
+tile_set = SubResource("TileSet_du1gc")
+
+[node name="StaticBlock" parent="Enviroment/Sect1" instance=ExtResource("9_hgq1i")]
+visible = false
+position = Vector2(0, 100)
+scale = Vector2(2, 1)
+
+[node name="CutOutCanvasLayer" parent="." instance=ExtResource("13_lsqbk")]
+visible = false
+
+[connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
+[connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
+[connection signal="body_entered" from="BeatEmitter/AudioStartArea" to="BeatEmitter/AudioStartArea" method="_on_body_entered"]
+[connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://bpgubtw7fh7nx"]
+[gd_scene load_steps=30 format=3 uid="uid://bpgubtw7fh7nx"]
 
 [ext_resource type="Script" uid="uid://bha3eoii8jk02" path="res://Scripts/player_body_2d.gd" id="1_d1l6g"]
 [ext_resource type="Script" uid="uid://pr4gwe6w4jsj" path="res://Scripts/interaction.gd" id="3_8oiy1"]
 [ext_resource type="Texture2D" uid="uid://lxacvyvu5gql" path="res://sprites/player-Sheet.png" id="3_ir3t2"]
 [ext_resource type="Texture2D" uid="uid://bf3tji7rq10qh" path="res://DownKey.png" id="4_jxpcn"]
+[ext_resource type="AudioStream" uid="uid://b75nrkijx72sk" path="res://sfx/ouch player death.mp3" id="5_2hyfl"]
+[ext_resource type="AudioStream" uid="uid://cp01g6eq20j6s" path="res://sfx/ow player death.mp3" id="6_cb2oe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_106fc"]
 radius = 9.0
@@ -12,6 +14,10 @@ height = 26.0
 [sub_resource type="Gradient" id="Gradient_106fc"]
 offsets = PackedFloat32Array(0, 0.134387, 0.608696, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxpcn"]
+atlas = ExtResource("3_ir3t2")
+region = Rect2(544, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hyfl"]
 atlas = ExtResource("3_ir3t2")
@@ -83,6 +89,14 @@ region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jxpcn"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxpcn")
+}],
+"loop": true,
+"name": &"Death_Fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2hyfl")
@@ -158,6 +172,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_106fc"]
 size = Vector2(30, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbdmu"]
+atlas = ExtResource("3_ir3t2")
+region = Rect2(544, 0, 32, 32)
+
 [node name="PlayerBody2D" type="CharacterBody2D"]
 script = ExtResource("1_d1l6g")
 
@@ -207,7 +225,7 @@ color_ramp = SubResource("Gradient_106fc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipPivot"]
 sprite_frames = SubResource("SpriteFrames_jxpcn")
-animation = &"Idle"
+animation = &"Death_Fall"
 autoplay = "Idle"
 
 [node name="InteractionDetectionArea" type="Area2D" parent="."]
@@ -223,6 +241,25 @@ visible = false
 position = Vector2(-1, -33)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_jxpcn")
+
+[node name="DeathFallParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_wbdmu")
+lifetime = 2.0
+one_shot = true
+direction = Vector2(0, -1)
+spread = 10.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+
+[node name="DeathFallAudioStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2hyfl")
+
+[node name="DeathFallAudioStream2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_cb2oe")
 
 [connection signal="area_entered" from="InteractionDetectionArea" to="InteractionDetectionArea" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionDetectionArea" to="InteractionDetectionArea" method="_on_area_exited"]

@@ -1,10 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://2ni3ue3bvtrb"]
+[gd_scene load_steps=18 format=3 uid="uid://2ni3ue3bvtrb"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_0jhw5"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eqosv"]
 [ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_6a7cf"]
-[ext_resource type="Script" uid="uid://bav1ecjcyn6rs" path="res://Scripts/audio_stop_area.gd" id="4_hpjhc"]
-[ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_56d2c"]
 [ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_jywle"]
 [ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_l1hk4"]
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_b2fon"]
@@ -18,15 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://c8jmpgdadnv8g" path="res://Scenes/fragile_rotator.tscn" id="15_eqosv"]
 [ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="18_56d2c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rqgg"]
-size = Vector2(86, 272)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_akkqd"]
-size = Vector2(138, 499)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8v7by"]
-size = Vector2(207, 31)
-
 [sub_resource type="Environment" id="Environment_gojnm"]
 background_mode = 3
 glow_enabled = true
@@ -35,7 +24,7 @@ glow_blend_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
 size = Vector2(9923, 1843.5)
 
-[node name="Level1" type="Node2D"]
+[node name="Level2" type="Node2D"]
 
 [node name="BeatEmitter" type="Node" parent="."]
 script = ExtResource("1_0jhw5")
@@ -49,35 +38,11 @@ stream = ExtResource("2_eqosv")
 [node name="BapAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
 stream = ExtResource("3_6a7cf")
 
-[node name="AudioStopArea" type="Area2D" parent="BeatEmitter"]
-position = Vector2(2114, -1325)
-script = ExtResource("4_hpjhc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStopArea"]
-position = Vector2(48, -81)
-shape = SubResource("RectangleShape2D_1rqgg")
-
-[node name="AudioStartArea" type="Area2D" parent="BeatEmitter"]
-position = Vector2(-292, -1028)
-script = ExtResource("5_56d2c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea"]
-position = Vector2(674, -81)
-shape = SubResource("RectangleShape2D_akkqd")
-
-[node name="AudioStartArea2" type="Area2D" parent="BeatEmitter"]
-position = Vector2(1649, -1184)
-script = ExtResource("5_56d2c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea2"]
-position = Vector2(678.5, -63.5)
-shape = SubResource("RectangleShape2D_8v7by")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gojnm")
 
 [node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_jywle")]
-position = Vector2(0, 49)
+position = Vector2(1, 30)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
 zoom = Vector2(2, 2)
@@ -129,7 +94,8 @@ position = Vector2(1404, 234)
 position = Vector2(2100, 7)
 
 [node name="CheckPointArea5" parent="RestartHandler" instance=ExtResource("8_b2fon")]
-position = Vector2(2745, -16)
+position = Vector2(2739, -13)
+scale = Vector2(0.64, 0.64)
 
 [node name="Enviroment" type="Node" parent="."]
 
@@ -226,7 +192,4 @@ texture = ExtResource("18_56d2c")
 visible = false
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
-[connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
-[connection signal="body_entered" from="BeatEmitter/AudioStartArea" to="BeatEmitter/AudioStartArea" method="_on_body_entered"]
-[connection signal="body_entered" from="BeatEmitter/AudioStartArea2" to="BeatEmitter/AudioStartArea2" method="_on_body_entered"]
 [connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b75nrkijx72sk"
+path="res://.godot/imported/ouch player death.mp3-07dc0d1479048ef7b474bcde965123dc.mp3str"
+
+[deps]
+
+source_file="res://sfx/ouch player death.mp3"
+dest_files=["res://.godot/imported/ouch player death.mp3-07dc0d1479048ef7b474bcde965123dc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

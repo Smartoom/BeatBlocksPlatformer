@@ -18,6 +18,7 @@ const normal_gravity = Vector2.DOWN * 650.0
 
 var walking_inside_door = false
 var grounded = false
+var is_dead = false
 
 func _ready() -> void:
 	get_tree().get_first_node_in_group("CutOutCanvasLayer").start_fade_in(get_player_position_for_shader())
@@ -30,7 +31,7 @@ func handleGravity(delta: float):
 			velocity += normal_gravity * delta
 	
 func _physics_process(delta: float) -> void:
-	if walking_inside_door:
+	if walking_inside_door or is_dead:
 		velocity = Vector2.ZERO
 		return
 	
@@ -82,6 +83,25 @@ func handle_animation():
 	else:
 		animated_sprite.play("Jump")
 
+func die():
+	print("die")
+	is_dead = true #tells restart prompt to enable itself
+	$CollisionShape2D.disabled = true
+	$InteractionDetectionArea.monitoring = false
+	animated_sprite.visible = false
+	$DeathFallParticles.restart()
+	if (randi() % 2 == 0):
+		$DeathFallAudioStream.play()
+	else:
+		$DeathFallAudioStream2.play()
+
+func revive():
+	is_dead = false
+	$CollisionShape2D.disabled = false
+	$InteractionDetectionArea.monitoring = true
+	animated_sprite.visible = true
+	$DeathFallParticles.emitting = false
+	$DeathFallAudioStream.stop()
 
 func flip_character (direction):
 	if (direction > 0 and flip_pivot.scale.x == -1):
