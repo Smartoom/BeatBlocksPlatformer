@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2fpia3ryn41p"]
+
+[ext_resource type="Script" uid="uid://pbwypvbp53yl" path="res://Scripts/fire_beam.gd" id="1_upd2e"]
+[ext_resource type="PackedScene" uid="uid://ce0s8bq6shepk" path="res://Scenes/fire_singular.tscn" id="2_1cb30"]
+
+[node name="FireBeam" type="Node2D" node_paths=PackedStringArray("fireballs")]
+script = ExtResource("1_upd2e")
+fireballs = [NodePath("Fire_Singular"), NodePath("Fire_Singular2"), NodePath("Fire_Singular3"), NodePath("Fire_Singular4")]
+
+[node name="Fire_Singular" parent="." instance=ExtResource("2_1cb30")]
+
+[node name="Fire_Singular2" parent="." instance=ExtResource("2_1cb30")]
+position = Vector2(24, 0)
+
+[node name="Fire_Singular3" parent="." instance=ExtResource("2_1cb30")]
+position = Vector2(48, 0)
+
+[node name="Fire_Singular4" parent="." instance=ExtResource("2_1cb30")]
+position = Vector2(72, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://clgevrl788x8s"]
+[gd_scene load_steps=23 format=4 uid="uid://clgevrl788x8s"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_yqib7"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_w3eof"]
@@ -10,9 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_etuld"]
 [ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_v1uej"]
 [ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="12_nqbrd"]
+[ext_resource type="PackedScene" uid="uid://c2fpia3ryn41p" path="res://Scenes/fire_beam.tscn" id="14_du1gc"]
 [ext_resource type="PackedScene" uid="uid://ce0s8bq6shepk" path="res://Scenes/fire_singular.tscn" id="14_l8qla"]
 [ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="15_xbb0r"]
 [ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="16_35jnd"]
+[ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="16_uwisk"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="17_ltrm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqbrd"]
@@ -104,9 +106,9 @@ position = Vector2(-2, 31)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
 zoom = Vector2(2, 2)
-limit_left = -400
+limit_left = -300
 limit_top = -1300
-limit_right = 400
+limit_right = 1360
 limit_bottom = 200
 editor_draw_limits = true
 
@@ -173,17 +175,27 @@ scale = Vector2(2, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Enviroment/Sect1"]
 z_index = -4
-tile_map_data = PackedByteArray("AAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAABAAEAAAD+/wIAAAABAAEAAAD9/wIAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAFAAQAAAABAAEAAAAGAAQAAAABAAEAAAAHAAQAAAABAAEAAAAIAAQAAAABAAEAAAAJAAQAAAABAAEAAAAKAAQAAAABAAEAAAAFAAMAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAABAAEAAAD+/wIAAAABAAEAAAD9/wIAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAFAAQAAAABAAEAAAAGAAQAAAABAAEAAAAHAAQAAAABAAEAAAAIAAQAAAABAAEAAAAJAAQAAAABAAEAAAAKAAQAAAABAAEAAAAFAAMAAAABAAEAAAAXAPz/AAABAAEAAAAYAPz/AAABAAEAAAAZAPz/AAABAAEAAAAaAPz/AAABAAEAAAAbAPz/AAABAAEAAAAcAPz/AAABAAEAAAAdAPz/AAABAAEAAAAeAPz/AAABAAEAAAAfAPz/AAABAAEAAAAgAPz/AAABAAEAAAAhAPz/AAABAAEAAAAZAPn/AAABAAEAAAAaAPn/AAABAAEAAAA=")
 tile_set = SubResource("TileSet_du1gc")
 
 [node name="StaticBlock" parent="Enviroment/Sect1" instance=ExtResource("9_v1uej")]
 position = Vector2(265, 35)
 
+[node name="Fire_Singular" parent="Enviroment/Sect1" instance=ExtResource("14_l8qla")]
+position = Vector2(112, 51)
+
+[node name="FireBeam" parent="Enviroment/Sect1" instance=ExtResource("14_du1gc")]
+position = Vector2(652, 5)
+rotationSpeed = 0.0
+
+[node name="FireBeam2" parent="Enviroment/Sect1" instance=ExtResource("14_du1gc")]
+position = Vector2(824, -208)
+
 [node name="CutOutCanvasLayer" parent="." instance=ExtResource("17_ltrm1")]
 visible = false
 
-[node name="Fire_Singular" parent="." instance=ExtResource("14_l8qla")]
-position = Vector2(119, 46)
+[node name="StaticBlock_Rotator" parent="." instance=ExtResource("16_uwisk")]
+position = Vector2(534, -22)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]

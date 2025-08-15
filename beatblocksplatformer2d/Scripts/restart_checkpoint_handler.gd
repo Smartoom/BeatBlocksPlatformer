@@ -14,9 +14,9 @@ func _process(_delta: float) -> void:
 		restart_prompt.visible = true
 	
 	if Input.is_action_just_pressed("Restart"):
-		player_node.revive()
 		player_node.position = checkpoints.get(last_checkpoint).global_position
 		restart_prompt.visible = false
+		player_node.revive()
 		
 		#reset resettable objects
 		var list_of_things_to_reset := get_tree().get_nodes_in_group("Resettable")

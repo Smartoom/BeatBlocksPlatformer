@@ -225,7 +225,7 @@ color_ramp = SubResource("Gradient_106fc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipPivot"]
 sprite_frames = SubResource("SpriteFrames_jxpcn")
-animation = &"Death_Fall"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="InteractionDetectionArea" type="Area2D" parent="."]

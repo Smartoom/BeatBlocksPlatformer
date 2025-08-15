@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ce0s8bq6shepk"]
 
 [ext_resource type="Texture2D" uid="uid://dcoq2wac3hkok" path="res://sprites/fireAnimation-Sheet.png" id="1_b0xe5"]
-[ext_resource type="Script" uid="uid://uvtqmri2p1xg" path="res://Scenes/kill_on_touch.gd" id="1_c4jp8"]
+[ext_resource type="Script" uid="uid://uvtqmri2p1xg" path="res://Scripts/kill_on_touch.gd" id="1_c4jp8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4jp8"]
 radius = 12.0

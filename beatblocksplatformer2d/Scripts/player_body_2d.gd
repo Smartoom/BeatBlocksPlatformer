@@ -84,9 +84,8 @@ func handle_animation():
 		animated_sprite.play("Jump")
 
 func die():
-	print("die")
 	is_dead = true #tells restart prompt to enable itself
-	$CollisionShape2D.disabled = true
+	#$CollisionShape2D.call_deferred("set_disabled", true)
 	$InteractionDetectionArea.monitoring = false
 	animated_sprite.visible = false
 	$DeathFallParticles.restart()
@@ -97,11 +96,12 @@ func die():
 
 func revive():
 	is_dead = false
-	$CollisionShape2D.disabled = false
+	#$CollisionShape2D.call_deferred("set_disabled", false)
 	$InteractionDetectionArea.monitoring = true
 	animated_sprite.visible = true
 	$DeathFallParticles.emitting = false
 	$DeathFallAudioStream.stop()
+	$DeathFallAudioStream2.stop()
 
 func flip_character (direction):
 	if (direction > 0 and flip_pivot.scale.x == -1):
