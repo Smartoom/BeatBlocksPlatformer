@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	if dipping:
 		var progress = dippingTimer.wait_time - dippingTimer.time_left
 		var sinValue = -sin(PI * 2.0 * (progress / dippingTimer.wait_time))
-		if (sinValue > 0.4 and pushTimer.is_stopped() and !pushed):
+		if (sinValue > 0 and pushTimer.is_stopped() and !pushed):
 			pushTimer.start()
 			pushed = true
 			constant_linear_velocity = Vector2.UP * upward_force
