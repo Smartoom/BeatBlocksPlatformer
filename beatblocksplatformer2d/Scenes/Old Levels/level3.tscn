@@ -1,22 +1,22 @@
 [gd_scene load_steps=24 format=4 uid="uid://clgevrl788x8s"]
 
-[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_yqib7"]
-[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_w3eof"]
-[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_pyjyt"]
-[ext_resource type="Script" uid="uid://bav1ecjcyn6rs" path="res://Scripts/audio_stop_area.gd" id="4_q21to"]
-[ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_nqbrd"]
-[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_rdfk5"]
-[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_jedjv"]
-[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_etuld"]
-[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_v1uej"]
-[ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="12_nqbrd"]
-[ext_resource type="PackedScene" uid="uid://c2fpia3ryn41p" path="res://Scenes/fire_beam.tscn" id="14_du1gc"]
-[ext_resource type="PackedScene" uid="uid://ce0s8bq6shepk" path="res://Scenes/fire_singular.tscn" id="14_l8qla"]
-[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="15_xbb0r"]
-[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="16_35jnd"]
-[ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="16_uwisk"]
-[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="17_ltrm1"]
-[ext_resource type="PackedScene" uid="uid://cmmlskkrpu0va" path="res://Scenes/cloud_platform.tscn" id="17_yqib7"]
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_ryx7w"]
+[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_06m2t"]
+[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_588yt"]
+[ext_resource type="Script" uid="uid://bav1ecjcyn6rs" path="res://Scripts/audio_stop_area.gd" id="4_0t6br"]
+[ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_pxhrb"]
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_ag31b"]
+[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_hlp6n"]
+[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_lcxy0"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="9_fvvrw"]
+[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="10_gm3un"]
+[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="11_o3c74"]
+[ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="12_qe3bw"]
+[ext_resource type="PackedScene" uid="uid://ce0s8bq6shepk" path="res://Scenes/fire_singular.tscn" id="13_dn6km"]
+[ext_resource type="PackedScene" uid="uid://c2fpia3ryn41p" path="res://Scenes/fire_beam.tscn" id="14_hv2v4"]
+[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="15_q4jgl"]
+[ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="16_ui0gg"]
+[ext_resource type="PackedScene" uid="uid://cmmlskkrpu0va" path="res://Scenes/cloud_platform.tscn" id="17_gd1yo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqbrd"]
 
@@ -31,7 +31,7 @@ glow_blend_mode = 1
 size = Vector2(9923, 1843.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l8qla"]
-texture = ExtResource("12_nqbrd")
+texture = ExtResource("12_qe3bw")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -74,27 +74,27 @@ sources/0 = SubResource("TileSetAtlasSource_l8qla")
 [node name="Level3" type="Node2D"]
 
 [node name="BeatEmitter" type="Node" parent="."]
-script = ExtResource("1_yqib7")
+script = ExtResource("1_ryx7w")
 
 [node name="Timer" type="Timer" parent="BeatEmitter"]
 autostart = true
 
 [node name="BopAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
-stream = ExtResource("2_w3eof")
+stream = ExtResource("2_06m2t")
 
 [node name="BapAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
-stream = ExtResource("3_pyjyt")
+stream = ExtResource("3_588yt")
 
 [node name="AudioStopArea" type="Area2D" parent="BeatEmitter"]
 position = Vector2(907, -557)
-script = ExtResource("4_q21to")
+script = ExtResource("4_0t6br")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStopArea"]
 shape = SubResource("RectangleShape2D_nqbrd")
 
 [node name="AudioStartArea" type="Area2D" parent="BeatEmitter"]
 position = Vector2(910, -450)
-script = ExtResource("5_nqbrd")
+script = ExtResource("5_pxhrb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea"]
 shape = SubResource("RectangleShape2D_l8qla")
@@ -102,7 +102,7 @@ shape = SubResource("RectangleShape2D_l8qla")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gojnm")
 
-[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_rdfk5")]
+[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_ag31b")]
 position = Vector2(-2, 31)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
@@ -114,7 +114,7 @@ limit_bottom = 200
 editor_draw_limits = true
 
 [node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
-script = ExtResource("7_jedjv")
+script = ExtResource("7_hlp6n")
 checkpoints = [NodePath("CheckPointArea")]
 
 [node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
@@ -142,7 +142,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Press R to go back to a checkpoint"
 
-[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_etuld")]
+[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_lcxy0")]
 position = Vector2(2, 49)
 
 [node name="Enviroment" type="Node" parent="."]
@@ -151,7 +151,7 @@ position = Vector2(2, 49)
 
 [node name="Win Room" type="Node" parent="Enviroment"]
 
-[node name="DoorArea" parent="Enviroment/Win Room" instance=ExtResource("15_xbb0r")]
+[node name="DoorArea" parent="Enviroment/Win Room" instance=ExtResource("9_fvvrw")]
 position = Vector2(-29, -1023)
 can_interact = true
 
@@ -166,9 +166,9 @@ color = Color(0.0156863, 0.0196078, 0.0980392, 1)
 [node name="PointLight2D" type="PointLight2D" parent="Enviroment/Win Room"]
 position = Vector2(-29, -1047)
 scale = Vector2(5, 4.093)
-texture = ExtResource("16_35jnd")
+texture = ExtResource("10_gm3un")
 
-[node name="StaticBlock3" parent="Enviroment/Win Room" instance=ExtResource("9_v1uej")]
+[node name="StaticBlock3" parent="Enviroment/Win Room" instance=ExtResource("11_o3c74")]
 position = Vector2(-22, -1006)
 scale = Vector2(2, 1)
 
@@ -179,26 +179,26 @@ z_index = -4
 tile_map_data = PackedByteArray("AAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAABAAEAAAD+/wIAAAABAAEAAAD9/wIAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAFAAQAAAABAAEAAAAGAAQAAAABAAEAAAAHAAQAAAABAAEAAAAIAAQAAAABAAEAAAAJAAQAAAABAAEAAAAKAAQAAAABAAEAAAAFAAMAAAABAAEAAAAXAPz/AAABAAEAAAAYAPz/AAABAAEAAAAZAPz/AAABAAEAAAAaAPz/AAABAAEAAAAbAPz/AAABAAEAAAAcAPz/AAABAAEAAAAdAPz/AAABAAEAAAAeAPz/AAABAAEAAAAfAPz/AAABAAEAAAAgAPz/AAABAAEAAAAhAPz/AAABAAEAAAAZAPn/AAABAAEAAAAaAPn/AAABAAEAAAA=")
 tile_set = SubResource("TileSet_du1gc")
 
-[node name="StaticBlock" parent="Enviroment/Sect1" instance=ExtResource("9_v1uej")]
+[node name="StaticBlock" parent="Enviroment/Sect1" instance=ExtResource("11_o3c74")]
 position = Vector2(265, 35)
 
-[node name="Fire_Singular" parent="Enviroment/Sect1" instance=ExtResource("14_l8qla")]
+[node name="Fire_Singular" parent="Enviroment/Sect1" instance=ExtResource("13_dn6km")]
 position = Vector2(112, 51)
 
-[node name="FireBeam" parent="Enviroment/Sect1" instance=ExtResource("14_du1gc")]
+[node name="FireBeam" parent="Enviroment/Sect1" instance=ExtResource("14_hv2v4")]
 position = Vector2(652, 5)
 rotationSpeed = 0.0
 
-[node name="FireBeam2" parent="Enviroment/Sect1" instance=ExtResource("14_du1gc")]
+[node name="FireBeam2" parent="Enviroment/Sect1" instance=ExtResource("14_hv2v4")]
 position = Vector2(824, -208)
 
-[node name="CutOutCanvasLayer" parent="." instance=ExtResource("17_ltrm1")]
+[node name="CutOutCanvasLayer" parent="." instance=ExtResource("15_q4jgl")]
 visible = false
 
-[node name="StaticBlock_Rotator" parent="." instance=ExtResource("16_uwisk")]
+[node name="StaticBlock_Rotator" parent="." instance=ExtResource("16_ui0gg")]
 position = Vector2(534, -22)
 
-[node name="CloudPlatform" parent="." instance=ExtResource("17_yqib7")]
+[node name="CloudPlatform" parent="." instance=ExtResource("17_gd1yo")]
 position = Vector2(-197, 58)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]

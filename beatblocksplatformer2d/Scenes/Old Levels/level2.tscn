@@ -1,20 +1,20 @@
 [gd_scene load_steps=18 format=3 uid="uid://2ni3ue3bvtrb"]
 
-[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_0jhw5"]
-[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eqosv"]
-[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_6a7cf"]
-[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_jywle"]
-[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_l1hk4"]
-[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_b2fon"]
-[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="9_hpjhc"]
-[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="9_jydn8"]
-[ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="10_pwvbg"]
-[ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="11_6a7cf"]
-[ext_resource type="PackedScene" uid="uid://bubexi2xoxfl1" path="res://Scenes/sand_block.tscn" id="12_o7bax"]
-[ext_resource type="PackedScene" uid="uid://bl4x7m1fqc28r" path="res://Scenes/fragile_block.tscn" id="13_flysx"]
-[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="14_0jhw5"]
-[ext_resource type="PackedScene" uid="uid://c8jmpgdadnv8g" path="res://Scenes/fragile_rotator.tscn" id="15_eqosv"]
-[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="18_56d2c"]
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_o2nuq"]
+[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_y87fk"]
+[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_4cdjf"]
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="4_tkm0n"]
+[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="5_0ha0k"]
+[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="6_eerqr"]
+[ext_resource type="PackedScene" uid="uid://c2vodpblxfv33" path="res://Scenes/static_block.tscn" id="7_rxwtl"]
+[ext_resource type="PackedScene" uid="uid://iba0fqb4f2hh" path="res://Scenes/static_block_short.tscn" id="8_nunv4"]
+[ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="9_om3dj"]
+[ext_resource type="PackedScene" uid="uid://c8jmpgdadnv8g" path="res://Scenes/fragile_rotator.tscn" id="10_tkdet"]
+[ext_resource type="PackedScene" uid="uid://bubexi2xoxfl1" path="res://Scenes/sand_block.tscn" id="11_asyn7"]
+[ext_resource type="PackedScene" uid="uid://bl4x7m1fqc28r" path="res://Scenes/fragile_block.tscn" id="12_1pcf8"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="13_d8o02"]
+[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="14_slfq7"]
+[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="15_rn1m6"]
 
 [sub_resource type="Environment" id="Environment_gojnm"]
 background_mode = 3
@@ -27,21 +27,21 @@ size = Vector2(9923, 1843.5)
 [node name="Level2" type="Node2D"]
 
 [node name="BeatEmitter" type="Node" parent="."]
-script = ExtResource("1_0jhw5")
+script = ExtResource("1_o2nuq")
 
 [node name="Timer" type="Timer" parent="BeatEmitter"]
 autostart = true
 
 [node name="BopAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
-stream = ExtResource("2_eqosv")
+stream = ExtResource("2_y87fk")
 
 [node name="BapAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
-stream = ExtResource("3_6a7cf")
+stream = ExtResource("3_4cdjf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gojnm")
 
-[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_jywle")]
+[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("4_tkm0n")]
 position = Vector2(1, 30)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
@@ -53,7 +53,7 @@ limit_bottom = 500
 editor_draw_limits = true
 
 [node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
-script = ExtResource("7_l1hk4")
+script = ExtResource("5_0ha0k")
 checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2"), NodePath("CheckPointArea3"), NodePath("CheckPointArea4"), NodePath("CheckPointArea5")]
 
 [node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
@@ -81,19 +81,19 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Press R to go back to a checkpoint"
 
-[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("6_eerqr")]
 position = Vector2(2, 49)
 
-[node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+[node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("6_eerqr")]
 position = Vector2(340, 34)
 
-[node name="CheckPointArea3" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+[node name="CheckPointArea3" parent="RestartHandler" instance=ExtResource("6_eerqr")]
 position = Vector2(1404, 234)
 
-[node name="CheckPointArea4" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+[node name="CheckPointArea4" parent="RestartHandler" instance=ExtResource("6_eerqr")]
 position = Vector2(2100, 7)
 
-[node name="CheckPointArea5" parent="RestartHandler" instance=ExtResource("8_b2fon")]
+[node name="CheckPointArea5" parent="RestartHandler" instance=ExtResource("6_eerqr")]
 position = Vector2(2739, -13)
 scale = Vector2(0.64, 0.64)
 
@@ -101,77 +101,77 @@ scale = Vector2(0.64, 0.64)
 
 [node name="Bounds" type="Node" parent="Enviroment"]
 
-[node name="StaticBlock" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
+[node name="StaticBlock" parent="Enviroment/Bounds" instance=ExtResource("7_rxwtl")]
 position = Vector2(0, 100)
 scale = Vector2(2, 1)
 
-[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
+[node name="StaticBlock3" parent="Enviroment/Bounds" instance=ExtResource("7_rxwtl")]
 position = Vector2(2965, 30)
 scale = Vector2(2, 1)
 
-[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("9_jydn8")]
+[node name="StaticBlock2" parent="Enviroment/Bounds" instance=ExtResource("7_rxwtl")]
 position = Vector2(2101, 61)
 scale = Vector2(2, 1)
 
-[node name="StaticBlockShort" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
+[node name="StaticBlockShort" parent="Enviroment/Bounds" instance=ExtResource("8_nunv4")]
 position = Vector2(336, 96)
 
-[node name="StaticBlockShort2" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
+[node name="StaticBlockShort2" parent="Enviroment/Bounds" instance=ExtResource("8_nunv4")]
 position = Vector2(1048, 46)
 
-[node name="StaticBlockShort3" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
+[node name="StaticBlockShort3" parent="Enviroment/Bounds" instance=ExtResource("8_nunv4")]
 position = Vector2(1404, 284)
 
-[node name="StaticBlockShort4" parent="Enviroment/Bounds" instance=ExtResource("10_pwvbg")]
+[node name="StaticBlockShort4" parent="Enviroment/Bounds" instance=ExtResource("8_nunv4")]
 position = Vector2(1541, 256)
 
-[node name="StaticBlock_Rotator" parent="Enviroment/Bounds" instance=ExtResource("11_6a7cf")]
+[node name="StaticBlock_Rotator" parent="Enviroment/Bounds" instance=ExtResource("9_om3dj")]
 position = Vector2(1822, 226)
 
-[node name="Fragile Rotator" parent="Enviroment/Bounds" instance=ExtResource("15_eqosv")]
+[node name="Fragile Rotator" parent="Enviroment/Bounds" instance=ExtResource("10_tkdet")]
 position = Vector2(2455, 16)
 
-[node name="Fall_Block" parent="Enviroment/Bounds" instance=ExtResource("12_o7bax")]
+[node name="Fall_Block" parent="Enviroment/Bounds" instance=ExtResource("11_asyn7")]
 position = Vector2(2740, 30)
 
 [node name="Sect1" type="Node" parent="Enviroment"]
 
-[node name="SandBlock" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(1158, 44)
 
-[node name="SandBlock2" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock2" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(461, 96)
 
-[node name="SandBlock3" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock3" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(605, 97)
 
-[node name="SandBlock4" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock4" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(754, 96)
 
-[node name="SandBlock5" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock5" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(923, 94)
 
-[node name="SandBlock6" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock6" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(1301, -64)
 
-[node name="SandBlock7" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="SandBlock7" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(1470, -66)
 
-[node name="Fragile_Block" parent="Enviroment/Sect1" instance=ExtResource("13_flysx")]
+[node name="Fragile_Block" parent="Enviroment/Sect1" instance=ExtResource("12_1pcf8")]
 position = Vector2(223, 100)
 
-[node name="Fall_Block" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="Fall_Block" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(1159, 350)
 
-[node name="Fall_Block2" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="Fall_Block2" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(1256, 350)
 
-[node name="Fall_Block3" parent="Enviroment/Sect1" instance=ExtResource("12_o7bax")]
+[node name="Fall_Block3" parent="Enviroment/Sect1" instance=ExtResource("11_asyn7")]
 position = Vector2(1353, 350)
 
 [node name="Win Room" type="Node" parent="Enviroment"]
 
-[node name="DoorArea" parent="Enviroment/Win Room" instance=ExtResource("9_hpjhc")]
+[node name="DoorArea" parent="Enviroment/Win Room" instance=ExtResource("13_d8o02")]
 position = Vector2(2958, 13)
 can_interact = true
 
@@ -186,9 +186,9 @@ color = Color(0.0156863, 0.0196078, 0.0980392, 1)
 [node name="PointLight2D" type="PointLight2D" parent="Enviroment/Win Room"]
 position = Vector2(2958, -11)
 scale = Vector2(5, 4.093)
-texture = ExtResource("18_56d2c")
+texture = ExtResource("14_slfq7")
 
-[node name="CutOutCanvasLayer" parent="." instance=ExtResource("14_0jhw5")]
+[node name="CutOutCanvasLayer" parent="." instance=ExtResource("15_rn1m6")]
 visible = false
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
