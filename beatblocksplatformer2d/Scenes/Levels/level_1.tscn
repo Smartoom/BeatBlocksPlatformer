@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cgoa4tflavp7i"]
+[gd_scene load_steps=23 format=4 uid="uid://cgoa4tflavp7i"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_tjl6l"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_3628d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_vvknj"]
 [ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="9_ad63i"]
 [ext_resource type="Script" uid="uid://bocrb3vwlkomg" path="res://Scripts/trophy_set.gd" id="12_vif5h"]
+[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="13_7r2dd"]
 [ext_resource type="Texture2D" uid="uid://d3204ux2ktw57" path="res://sprites/trophy.png" id="13_i7ma5"]
 [ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="14_t8afp"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="15_1fgkh"]
@@ -19,7 +20,7 @@ glow_enabled = true
 glow_blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sb12i"]
-size = Vector2(192, 41)
+size = Vector2(288, 42.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xe7un"]
 texture = ExtResource("9_ad63i")
@@ -136,14 +137,12 @@ editor_draw_limits = true
 
 [node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
 script = ExtResource("7_nojx8")
-checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2"), NodePath("CheckPointArea3"), NodePath("CheckPointArea4")]
+checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2"), NodePath("CheckPointArea3")]
 
 [node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestartHandler/RestartPromptArea"]
-visible = false
-position = Vector2(216, 146.5)
+position = Vector2(752, -21.25)
 shape = SubResource("RectangleShape2D_sb12i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="RestartHandler"]
@@ -165,20 +164,14 @@ grow_vertical = 2
 text = "Press R to go back to a checkpoint"
 
 [node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_vvknj")]
-visible = false
-position = Vector2(-2, -30)
+position = Vector2(36, -32)
 
 [node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_vvknj")]
-visible = false
-position = Vector2(657, -31)
+position = Vector2(578, -189)
 
 [node name="CheckPointArea3" parent="RestartHandler" instance=ExtResource("8_vvknj")]
-visible = false
-position = Vector2(1842, -31)
-
-[node name="CheckPointArea4" parent="RestartHandler" instance=ExtResource("8_vvknj")]
-visible = false
-position = Vector2(2088, -390)
+position = Vector2(668, -479)
+scale = Vector2(0.479995, 1)
 
 [node name="Enviroment" type="Node" parent="."]
 
@@ -216,8 +209,22 @@ shape = SubResource("RectangleShape2D_mwmob")
 [node name="DoorArea" parent="Enviroment/TrophySet" instance=ExtResource("14_t8afp")]
 position = Vector2(-23, -608)
 
+[node name="PointLight2D" type="PointLight2D" parent="Enviroment"]
+position = Vector2(-80, -969)
+scale = Vector2(11.5352, 17.7444)
+color = Color(1, 0.75, 0, 1)
+texture = ExtResource("13_7r2dd")
+
 [node name="CutOutCanvasLayer" parent="." instance=ExtResource("15_1fgkh")]
 visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_left = -664.0
+offset_top = -1085.0
+offset_right = 1351.0
+offset_bottom = 375.0
+color = Color(0.09, 0.09, 0.09, 1)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]
