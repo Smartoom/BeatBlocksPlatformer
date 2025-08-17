@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://clgevrl788x8s"]
+[gd_scene load_steps=24 format=4 uid="uid://clgevrl788x8s"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_yqib7"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_w3eof"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="16_35jnd"]
 [ext_resource type="PackedScene" uid="uid://c30thvgync074" path="res://Scenes/static_block_rotator.tscn" id="16_uwisk"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="17_ltrm1"]
+[ext_resource type="PackedScene" uid="uid://cmmlskkrpu0va" path="res://Scenes/cloud_platform.tscn" id="17_yqib7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqbrd"]
 
@@ -196,6 +197,9 @@ visible = false
 
 [node name="StaticBlock_Rotator" parent="." instance=ExtResource("16_uwisk")]
 position = Vector2(534, -22)
+
+[node name="CloudPlatform" parent="." instance=ExtResource("17_yqib7")]
+position = Vector2(-197, 58)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
 [connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]

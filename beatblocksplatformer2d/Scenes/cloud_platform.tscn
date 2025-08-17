@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmmlskkrpu0va"]
+
+[ext_resource type="Script" uid="uid://6ivsidpflyle" path="res://cloud_platform.gd" id="1_xw213"]
+[ext_resource type="Texture2D" uid="uid://boklj4f5ub0k8" path="res://sprites/cloudPlatform.png" id="2_iacd3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1mac"]
+radius = 16.0
+height = 98.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw213"]
+size = Vector2(96, 26)
+
+[node name="CloudPlatform" type="AnimatableBody2D"]
+script = ExtResource("1_xw213")
+animation_dip_amplitude = 30.0
+upward_force = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -4
+texture = ExtResource("2_iacd3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g1mac")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_xw213")
+
+[node name="dippingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="pushingTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="dippingTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="pushingTimer" to="." method="_on_pushing_timer_timeout"]
