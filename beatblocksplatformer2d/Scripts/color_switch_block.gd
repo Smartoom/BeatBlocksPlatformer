@@ -24,13 +24,11 @@ func on_beat_change():
 		disable()
 
 func enable():
-	print("AAAAAAAAAAAAAAAAAAAAAAAa+")
 	actived_sprite.visible = true
 	deactivated_sprite.visible = false
 	collisionShape.disabled = false
 
 func disable():
-	print("AAAAAAAAAAAAAAAAAAAAAAAa-")
 	actived_sprite.visible = false
 	deactivated_sprite.visible = true
 	collisionShape.disabled = true

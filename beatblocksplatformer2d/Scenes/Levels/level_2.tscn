@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dqbrbs6n6kpia"]
+[gd_scene load_steps=21 format=4 uid="uid://dqbrbs6n6kpia"]
 
 [ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_uqiic"]
 [ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_eopvx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_t27xo"]
 [ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="6_5buja"]
 [ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="7_wyygt"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="11_jip10"]
 [ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="12_1xj2d"]
 [ext_resource type="PackedScene" uid="uid://bqvn07c45vqbj" path="res://Scenes/switch_block_blue.tscn" id="12_uqiic"]
 [ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="13_7h8th"]
@@ -200,20 +201,24 @@ position = Vector2(971, -200)
 position = Vector2(722, -92)
 
 [node name="SwitchBlockPink" parent="Enviroment" instance=ExtResource("13_eopvx")]
-position = Vector2(570, 37)
+position = Vector2(570, 39)
 
 [node name="SwitchBlockPink2" parent="Enviroment" instance=ExtResource("13_eopvx")]
 position = Vector2(837, -139)
+
+[node name="DoorArea" parent="Enviroment" instance=ExtResource("11_jip10")]
+position = Vector2(1359, -225)
+can_interact = true
 
 [node name="CutOutCanvasLayer" parent="." instance=ExtResource("13_7h8th")]
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
-offset_left = -664.0
-offset_top = -1085.0
-offset_right = 1351.0
-offset_bottom = 375.0
+offset_left = -678.0
+offset_top = -668.0
+offset_right = 1483.0
+offset_bottom = 309.0
 color = Color(0.09, 0.09, 0.09, 1)
 
 [connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]

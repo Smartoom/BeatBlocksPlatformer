@@ -17,10 +17,10 @@ func _on_body_entered_pit(body: Node2D) -> void:
 	if not body.is_in_group("Player") or platforms_enabled:
 		return
 	
-	print("player entered pit")
+	#print("player entered pit")
 	$WaitbeforeEnablePlatformsTimer.start()
 func _on_waitbefore_enable_platforms_timer_timeout() -> void:
-	print("playing is staying in the pit, showing platforms")
+	#print("playing is staying in the pit, showing platforms")
 	platforms_enabled = true
 	beat_start.set_deferred("monitoring", true)
 	beat_stop.set_deferred("monitoring", true)
@@ -38,7 +38,7 @@ func disable_platforms():
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player") or !platforms_enabled:
 		return
-	print("player left pit")
+	#print("player left pit")
 	
 	disable_platforms()
 	beat_start.set_deferred("monitoring", false)
