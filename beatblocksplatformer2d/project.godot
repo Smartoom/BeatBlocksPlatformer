@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BeatBlocksPlatformer2D"
-run/main_scene="uid://dqbrbs6n6kpia"
+run/main_scene="uid://o8xmkf05drc0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
