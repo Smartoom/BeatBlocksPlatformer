@@ -7,8 +7,8 @@
 [node name="StaticBlock_Rotator" node_paths=PackedStringArray("blocks", "lines") instance=ExtResource("1_cqtc5")]
 blocks = [NodePath("animated_block"), NodePath("animated_block2"), NodePath("animated_block3"), NodePath("animated_block4")]
 speed = 0.75
-distance = 150.0
 lines = [NodePath("Line2D"), NodePath("Line2D2"), NodePath("Line2D3"), NodePath("Line2D4")]
+distance = 150.0
 
 [node name="Line2D" parent="." index="0"]
 points = PackedVector2Array(0, 0, 0, -150)
@@ -35,13 +35,13 @@ texture = ExtResource("2_s0iyl")
 texture_mode = 1
 
 [node name="animated_block" parent="." index="4" instance=ExtResource("3_cqtc5")]
-position = Vector2(150, 0)
+position = Vector2(120, 0)
 
 [node name="animated_block2" parent="." index="5" instance=ExtResource("3_cqtc5")]
-position = Vector2(-150, 0)
+position = Vector2(-120, 0)
 
 [node name="animated_block3" parent="." index="6" instance=ExtResource("3_cqtc5")]
-position = Vector2(0, 150)
+position = Vector2(0, 120)
 
 [node name="animated_block4" parent="." index="7" instance=ExtResource("3_cqtc5")]
-position = Vector2(0, -150)
+position = Vector2(0, -120)
