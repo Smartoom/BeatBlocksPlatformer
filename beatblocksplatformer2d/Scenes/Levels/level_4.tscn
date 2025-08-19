@@ -1,17 +1,339 @@
-[gd_scene format=3 uid="uid://c3l4748t470jq"]
+[gd_scene load_steps=34 format=3 uid="uid://c3l4748t470jq"]
 
-[node name="WIP Filler Level" type="Node"]
+[ext_resource type="Script" uid="uid://ck8blgayaojer" path="res://Scripts/beat_emitter.gd" id="1_eb5oh"]
+[ext_resource type="AudioStream" uid="uid://dq3lkvv6qphvw" path="res://sfx/bop.mp3" id="2_e7hmo"]
+[ext_resource type="AudioStream" uid="uid://c3et750sj224a" path="res://sfx/bap.mp3" id="3_legg8"]
+[ext_resource type="Script" uid="uid://bav1ecjcyn6rs" path="res://Scripts/audio_stop_area.gd" id="4_roffe"]
+[ext_resource type="Script" uid="uid://1guto3rywd3u" path="res://Scripts/audio_start_area.gd" id="5_d51q7"]
+[ext_resource type="PackedScene" uid="uid://bpgubtw7fh7nx" path="res://Scenes/player_body_2d.tscn" id="6_lapqw"]
+[ext_resource type="Script" uid="uid://dk0uusav7p0ws" path="res://Scripts/restart_checkpoint_handler.gd" id="7_oteb1"]
+[ext_resource type="PackedScene" uid="uid://bx1hnhn2b7vsx" path="res://Scenes/check_point_area.tscn" id="8_k8nfc"]
+[ext_resource type="Texture2D" uid="uid://c8dnr1d37k0bk" path="res://sprites/lightCone.png" id="9_ep717"]
+[ext_resource type="Texture2D" uid="uid://doaspnlotwdyp" path="res://sprites/stoneTiles.png" id="10_x7vre"]
+[ext_resource type="Texture2D" uid="uid://udr7m1e57fg4" path="res://sprites/hieroglyphTiles.png" id="11_lhrhx"]
+[ext_resource type="Texture2D" uid="uid://bf1ewaw28g60h" path="res://sprites/pyramidBrickTiles.png" id="12_iw2e1"]
+[ext_resource type="Texture2D" uid="uid://mplexhl7imx6" path="res://sprites/layeredPyramidTiles.png" id="13_p0l4d"]
+[ext_resource type="Texture2D" uid="uid://bsmjrawyp3m1w" path="res://sprites/pyramidMessyTiles.png" id="14_ipr37"]
+[ext_resource type="Script" uid="uid://cr37livcokikg" path="res://Scenes/Levels/pit_activator.gd" id="19_u2c58"]
+[ext_resource type="PackedScene" uid="uid://bqvn07c45vqbj" path="res://Scenes/switch_block_blue.tscn" id="20_t0r2h"]
+[ext_resource type="PackedScene" uid="uid://b0bwyu5xge2vl" path="res://Scenes/switch_block_pink.tscn" id="21_k2l7v"]
+[ext_resource type="PackedScene" uid="uid://h73v17i6nr8x" path="res://Scenes/door_area.tscn" id="22_kpq86"]
+[ext_resource type="Texture2D" uid="uid://4eql0i0wrqjs" path="res://sprites/gates.png" id="23_xsbhv"]
+[ext_resource type="PackedScene" uid="uid://bi5hdn5pkih0w" path="res://Scenes/cut_out_transition_canvas.tscn" id="24_kdvij"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxf76"]
+size = Vector2(86, 272)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia1lp"]
+size = Vector2(138, 499)
+
+[sub_resource type="Environment" id="Environment_gojnm"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5buja"]
+size = Vector2(5000, 500)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xe7un"]
+texture = ExtResource("10_x7vre")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13yca"]
+texture = ExtResource("11_lhrhx")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r8neg"]
+texture = ExtResource("12_iw2e1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8dmpc"]
+texture = ExtResource("13_p0l4d")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_anjjd"]
+texture = ExtResource("14_ipr37")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocbj8"]
+texture = ExtResource("12_iw2e1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_nqasx"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xe7un")
+sources/1 = SubResource("TileSetAtlasSource_13yca")
+sources/2 = SubResource("TileSetAtlasSource_8dmpc")
+sources/8 = SubResource("TileSetAtlasSource_anjjd")
+sources/9 = SubResource("TileSetAtlasSource_ocbj8")
+sources/10 = SubResource("TileSetAtlasSource_r8neg")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocbj8"]
+size = Vector2(160, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3m4x7"]
+size = Vector2(256, 72)
+
+[node name="Level4" type="Node2D"]
+
+[node name="BeatEmitter" type="Node" parent="."]
+script = ExtResource("1_eb5oh")
+
+[node name="Timer" type="Timer" parent="BeatEmitter"]
+autostart = true
+
+[node name="BopAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
+stream = ExtResource("2_e7hmo")
+
+[node name="BapAudio" type="AudioStreamPlayer" parent="BeatEmitter"]
+stream = ExtResource("3_legg8")
+
+[node name="AudioStopArea" type="Area2D" parent="BeatEmitter"]
+position = Vector2(2842, 136)
+monitoring = false
+script = ExtResource("4_roffe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStopArea"]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_yxf76")
+
+[node name="AudioStartArea" type="Area2D" parent="BeatEmitter"]
+position = Vector2(2256, 928)
+scale = Vector2(1, 0.119998)
+monitoring = false
+script = ExtResource("5_d51q7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeatEmitter/AudioStartArea"]
+position = Vector2(674, -81)
+shape = SubResource("RectangleShape2D_ia1lp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gojnm")
+
+[node name="PlayerBody2D" parent="." groups=["Player"] instance=ExtResource("6_lapqw")]
+position = Vector2(-297, 114)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerBody2D"]
+zoom = Vector2(2, 2)
+limit_left = -570
+limit_top = -355
+limit_right = 3470
+limit_bottom = 965
+editor_draw_limits = true
+
+[node name="RestartHandler" type="Node" parent="." node_paths=PackedStringArray("checkpoints")]
+script = ExtResource("7_oteb1")
+checkpoints = [NodePath("CheckPointArea"), NodePath("CheckPointArea2")]
+
+[node name="RestartPromptArea" type="Area2D" parent="RestartHandler"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartHandler/RestartPromptArea"]
+position = Vector2(0, 2131)
+shape = SubResource("RectangleShape2D_5buja")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RestartHandler"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RestartHandler/CanvasLayer"]
+visible = false
+z_index = 50
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = -47.0
-offset_right = 81.0
-offset_bottom = 47.0
+offset_left = -62.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Level  not yet made"
+text = "Press R to go back to a checkpoint"
+
+[node name="CheckPointArea" parent="RestartHandler" instance=ExtResource("8_k8nfc")]
+position = Vector2(541, 516)
+
+[node name="CheckPointArea2" parent="RestartHandler" instance=ExtResource("8_k8nfc")]
+position = Vector2(1597, 627)
+scale = Vector2(0.979975, 4.06598)
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Enviroment"]
+z_index = -4
+tile_set = SubResource("TileSet_nqasx")
+
+[node name="Background" type="ColorRect" parent="Enviroment"]
+z_index = -10
+offset_left = -1000.0
+offset_top = -1085.0
+offset_right = 1000.0
+offset_bottom = 375.0
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="PitRoom" type="Node" parent="Enviroment"]
+
+[node name="StairCase(Pit)" type="Node" parent="Enviroment"]
+
+[node name="EnablePlatformsArea" type="Area2D" parent="Enviroment/StairCase(Pit)" node_paths=PackedStringArray("beat_start", "beat_stop", "parent_of_appearing_platforms")]
+position = Vector2(2924, 911)
+script = ExtResource("19_u2c58")
+beat_start = NodePath("../../../BeatEmitter/AudioStartArea")
+beat_stop = NodePath("../../../BeatEmitter/AudioStopArea")
+parent_of_appearing_platforms = NodePath("../AppearingPlatforms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/StairCase(Pit)/EnablePlatformsArea"]
+position = Vector2(4, 3.5)
+shape = SubResource("RectangleShape2D_ocbj8")
+
+[node name="WaitbeforeEnablePlatformsTimer" type="Timer" parent="Enviroment/StairCase(Pit)/EnablePlatformsArea"]
+one_shot = true
+
+[node name="DisablePlatformsStartTimer" type="Timer" parent="Enviroment/StairCase(Pit)/EnablePlatformsArea"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Darknessbackground" type="ColorRect" parent="Enviroment/StairCase(Pit)"]
+z_index = -9
+offset_left = 2789.0
+offset_top = 297.0
+offset_right = 3076.0
+offset_bottom = 991.0
+color = Color(0.06, 0.06, 0.06, 1)
+
+[node name="AppearingPlatforms" type="Node" parent="Enviroment/StairCase(Pit)"]
+
+[node name="SwitchBlockBlue" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2997, 859)
+
+[node name="SwitchBlockBlue2" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2984, 768)
+
+[node name="SwitchBlockBlue3" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2986, 673)
+
+[node name="SwitchBlockBlue4" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2977, 571)
+
+[node name="SwitchBlockBlue6" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2856, 485)
+
+[node name="SwitchBlockBlue7" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2992, 394)
+
+[node name="SwitchBlockBlue8" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2859, 307)
+
+[node name="SwitchBlockBlue9" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("20_t0r2h")]
+position = Vector2(2770, 207)
+
+[node name="SwitchBlockPink" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(2859, 825)
+
+[node name="SwitchBlockPink2" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(2839, 721)
+
+[node name="SwitchBlockPink3" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(2839, 627)
+
+[node name="SwitchBlockPink4" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(3020, 513)
+
+[node name="SwitchBlockPink6" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(3024, 342)
+
+[node name="SwitchBlockPink7" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(2810, 258)
+
+[node name="SwitchBlockPink5" parent="Enviroment/StairCase(Pit)/AppearingPlatforms" instance=ExtResource("21_k2l7v")]
+position = Vector2(2827, 423)
+
+[node name="DisablePlatformsArea" type="Area2D" parent="Enviroment/StairCase(Pit)"]
+position = Vector2(2842, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/StairCase(Pit)/DisablePlatformsArea"]
+shape = SubResource("RectangleShape2D_3m4x7")
+
+[node name="Door" type="Node" parent="Enviroment"]
+
+[node name="DoorArea" parent="Enviroment/Door" instance=ExtResource("22_kpq86")]
+visible = false
+position = Vector2(0, -1)
+can_interact = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enviroment/Door"]
+position = Vector2(0, -1015)
+texture = ExtResource("23_xsbhv")
+
+[node name="Heaven\'s Light" type="PointLight2D" parent="Enviroment/Door"]
+position = Vector2(0, -1147)
+scale = Vector2(10, 10)
+energy = 5.0
+texture = ExtResource("9_ep717")
+
+[node name="CutOutCanvasLayer" parent="." instance=ExtResource("24_kdvij")]
+visible = false
+
+[connection signal="timeout" from="BeatEmitter/Timer" to="BeatEmitter" method="_on_timer_timeout"]
+[connection signal="body_entered" from="BeatEmitter/AudioStopArea" to="BeatEmitter/AudioStopArea" method="_on_body_entered"]
+[connection signal="body_entered" from="BeatEmitter/AudioStartArea" to="BeatEmitter/AudioStartArea" method="_on_body_entered"]
+[connection signal="body_entered" from="RestartHandler/RestartPromptArea" to="RestartHandler" method="_on_restart_prompt_area_body_entered"]
+[connection signal="body_entered" from="Enviroment/StairCase(Pit)/EnablePlatformsArea" to="Enviroment/StairCase(Pit)/EnablePlatformsArea" method="_on_body_entered_pit"]
+[connection signal="timeout" from="Enviroment/StairCase(Pit)/EnablePlatformsArea/WaitbeforeEnablePlatformsTimer" to="Enviroment/StairCase(Pit)/EnablePlatformsArea" method="_on_waitbefore_enable_platforms_timer_timeout"]
+[connection signal="timeout" from="Enviroment/StairCase(Pit)/EnablePlatformsArea/DisablePlatformsStartTimer" to="Enviroment/StairCase(Pit)/EnablePlatformsArea" method="_on_disable_platforms_start_timer_timeout"]
+[connection signal="body_entered" from="Enviroment/StairCase(Pit)/DisablePlatformsArea" to="Enviroment/StairCase(Pit)/EnablePlatformsArea" method="_on_area_2d_2_body_entered"]
