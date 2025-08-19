@@ -5,11 +5,11 @@ var moving = false
 var original_position:Vector2
 
 func _ready() -> void:
-	original_position = position
+	original_position = global_position
 
 func _physics_process(delta: float) -> void:
 	if moving:
-		position += speed * delta * Vector2.UP
+		global_position += speed * delta * Vector2.UP
 
 func erupt():
 	moving = true
@@ -25,4 +25,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func reset_object():
 	stop_erruption()
-	position = original_position
+	global_position = original_position

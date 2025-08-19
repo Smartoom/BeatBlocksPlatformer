@@ -437,7 +437,7 @@ scale = Vector2(10, 10)
 energy = 5.0
 texture = ExtResource("9_ep717")
 
-[node name="Lava" type="Area2D" parent="Enviroment"]
+[node name="Lava" type="Area2D" parent="Enviroment" groups=["Resettable"]]
 position = Vector2(9, 875)
 script = ExtResource("22_dnyrp")
 
